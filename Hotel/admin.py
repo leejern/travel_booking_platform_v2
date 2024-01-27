@@ -1,0 +1,45 @@
+from django.contrib import admin
+
+from .models import *
+# Register your models here.
+
+class HotelGalleryinline(admin.TabularInline):
+    model = HotelGallery
+
+class HotelFeatureinline(admin.TabularInline):
+    model = HotelFeatures
+
+class HotelFaqinline(admin.TabularInline):
+    model = HotelFaqs
+
+class HotelRoomTypeinline(admin.TabularInline):
+    model = RoomType
+
+class HotelRoominline(admin.TabularInline):
+    model = Room
+
+
+class HotelAdmin(admin.ModelAdmin):
+    inlines=[HotelGalleryinline,HotelFeatureinline,HotelFaqinline,HotelRoomTypeinline,HotelRoominline]
+    list_display = ['thumbnail', 'name', 'mobile', 'status', 'views']
+    list_filter = ['user',]
+    search_fields=['name', 'mobile', 'status', ]
+    prepopulated_fields = {'slug':('name',)}
+
+
+
+class RoomTypeAdmin(admin.ModelAdmin):
+    list_display= ['hotel','type','price']
+    prepopulated_fields = {'slug':('type',)}
+
+admin.site.register(Hotel,HotelAdmin)
+admin.site.register(HotelGallery)
+admin.site.register(HotelFeatures)
+admin.site.register(HotelFaqs)
+admin.site.register(RoomType,RoomTypeAdmin)
+admin.site.register(Room)
+admin.site.register(Booking)
+admin.site.register(GuestActivityLog)
+admin.site.register(StaffOnDuty)
+
+

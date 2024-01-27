@@ -1,0 +1,37 @@
+{% load static %}
+<!-- Blog Start -->
+<div class="blog-area blog-padding">
+    <div class="container">
+        
+        <div class="row">
+            {% for hotel in hotels %}
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <!-- Single Blog -->
+                <div class="single-blog mb-30">
+                    <div class="blog-img">
+                        <a href="{% url "Hotel:hotel_detail" hotel.slug %}"><img src="{{hotel.image.url}}" height="300" alt=""></a>
+                    </div>
+                    <div class="blog-caption">
+                        <div class="blog-cap-top d-flex justify-content-between mb-40">
+                            <ul>
+                                <li><span class="fa fas-phone"></span><a href="{% url "Hotel:hotel_detail" hotel.slug %}"> {{hotel.mobile}}</a></li>
+                                <li><spanclass="fas fa-phone"></span><a href="{% url "Hotel:hotel_detail" hotel.slug %}"> {{hotel.email}}</a></li>
+                                
+                            </ul>
+                        </div>
+                        <div class="blog-cap-mid">
+                            <p><a href="{% url "Hotel:hotel_detail" hotel.slug %}">{{hotel.name}}</a></p>
+                        </div>
+                        <!-- Comments -->
+                        <div class="blog-cap-bottom d-flex justify-content-between">
+                            <span>{{hotel.email}}</span>
+                            <span><img src="{% static 'img/our_blog/blog-comments-icon.jpg'%}" alt="">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+ </div>
+ <!-- Blog End -->

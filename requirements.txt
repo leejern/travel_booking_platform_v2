@@ -1,0 +1,9 @@
+django==4.2.6
+django-bootstrap-v5==1.0.11
+django-jazzmin==2.6.0
+fontawesomefree==6.4.2
+django-crispy-forms==2.1
+django-ckeditor==6.7.0
+django-taggit==5.0.1
+django-import-export==3.3.4
+django-mathfilters==1.0.0

@@ -1,0 +1,59 @@
+{% extends "hotel/base.html" %}
+{% block title %}Sign In{% endblock title %}
+{% load static %}
+{% block content %}
+{% block preloader %}Login{% endblock preloader %}
+<section class="vh-100 home-banner-area">
+
+   <div class="container py-3 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+         <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem;">
+               <div class="row g-0">
+                  <div class="col-sm-6 d-flex d-md-block">
+                     <img src="{% static "img/hero/h1_hero.jpg"%}" height="450" width="450" alt="login form" class="img-fluidr" style="border-radius: 1rem 0 0 1rem;" />
+                  </div>
+                  <div class="col-sm-6 d-flex align-items-center">
+                     <div class="card-body  ps-5 text-black">
+                        <h5 class="fw-normal mb-3 pb-2 text-center" style="letter-spacing: 1px;">SignIn your account</h5>
+
+                        <form action="" method='post'>
+                           {% csrf_token %}
+
+
+                           {% if form.errors %}
+                           <p class="small text-danger">Invalid username or password</p>
+                           {% endif %}
+                           <div class="form-outline mb-4">
+                              <input type="email" class="form-control form-control-lg" name="email" autofocus autocapitalize="none" autocomplete="email" maxlength="150" required id="id_email" placeholder="email" />
+
+                           </div>
+
+                           <div class="form-outline mb-2">
+                              <input type="password" class="form-control form-control-lg" name="password" autocomplete="current-password" required id="id_password" placeholder="password" />
+
+                           </div>
+                           <div class="row g-0">
+                              <div class="pt-1 mb-2 col">
+                                 <input class="btn btn-success btn-lg btn-block w-75" type="submit" value='Login' />
+                              </div>
+                              <div class="pt-1 mb-2 col">
+
+                                 <a class="small text-muted3" style="color: #e62d92;" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Forgot password?</a>
+                              </div>
+                              <p class="mb-0 pb-lg-2" style="color: #393f81;">Don't have an account?
+                                 <a href="{% url "UserAuth:sign-up" %}" style="color: #14ee88;">Register here</a>
+                              </p>
+                           </div>
+                        </form>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+{% endblock content %}
