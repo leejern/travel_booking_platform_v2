@@ -43,10 +43,21 @@ def room_type_detail(request,slug,rt_slug):
     rtype=RoomType.objects.filter(hotel=hotel,)
     rooms= Room.objects.filter(room_type=room_type,is_available=True)
 
+
+    hotel_id = request.GET.get("hotel-id")
+    checkin = request.GET.get("checkin")
+    checkout = request.GET.get("checkout")
+    adults = request.GET.get("adults")
+    children = request.GET.get("children")
+
     context = { 
         "hotel":hotel, 
         "room_type":room_type, 
-        "rtype":rtype, 
+        "rtype":rtype,          
+        "checkin":checkin, 
+        "checkout":checkout, 
+        "adults":adults, 
+        "children":children, 
         "rooms":rooms
     }
 

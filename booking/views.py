@@ -26,7 +26,7 @@ def check_room_availabilty(request):
         print("room_type =======",room_type)
 
         url = reverse("Hotel:room_type_detail", args=[hotel.slug, room_type.slug])
-        url_with_params = f"{url}?hotel-id={id}&checkin={checkin}$checkout={checkout}$adults={adults}&children={children}$room_type={room_type}"
+        url_with_params = f"{url}?hotel-id={id}&checkin={checkin}&checkout={checkout}&adults={adults}&children={children}&room_type={room_type}"
         return HttpResponseRedirect(url_with_params)
     
 
@@ -45,25 +45,22 @@ def add_to_selection(request):
         'adults':request.GET['adults'],
         'children':request.GET['children'],
     }
-    if "selection_data_odj" in request.session: 
-        if str(request.GET['id']) in request.session['selection_data_obj']: 
+    if "selection_data_obj" in request.session:
+        if str(request.GET["id"]) in request.session['selection_data_obj']:
             selection_data = request.session['selection_data_obj']
-            selection_data[str(request.GET['id'])]['adults'] = int(room_selection[str(request.GET["id"])]['adults'])
-            selection_data[str(request.GET['id'])]['children'] = int(room_selection[str(request.GET["id"])]['children'])
-
+            selection_data[str(request.GET['id'])]['adults'] = int(room_selection[str(request.GET["id"])]["adults"]) 
+            selection_data[str(request.GET['id'])]['children'] = int(room_selection[str(request.GET["id"])]["children"]) 
+            request.session['selection_data_obj']=selection_data
         else: 
             selection_data = request.session['selection_data_obj']
             selection_data.update(room_selection)
-            request.session["selection_data_obj"] = selection_data
-            
-    else: 
-        request.session['selection_data_obj'] = room_selection
-    
-    data = { 
-        "data": request.session["selected_data_obj"], 
-        "fruit":"banana",
-        "name":"Lijan Ouma",
-        "total_selected_items":request.session["selection_data_obj"]
-    }
+            request.session['selection_data_obj']=selection_data 
+    else:
+        request.session['selection_data_obj']=room_selection
 
+    data = { 
+        "data":request.session['selection_data_obj'], 
+        "name":"lijan",
+        "total_selected_items":len(request.session['selection_data_obj'])
+    }
     return JsonResponse(data)
