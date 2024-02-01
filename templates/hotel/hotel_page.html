@@ -202,7 +202,8 @@
               <div class="nav nav-tabs rooms lh-room border-0" id="nav-tab" role="tablist">
                   {% for type in hotel.roomtypes.all %}
                   <input type="hidden" id="type" value="{{type.type}}">
-                   <button  class="mb-0 text-[20px] leading-[28px] text-[#000] focus:text-[#000] w-1/4 border-0 text-center nav-link active" id="{{type.type}}" >
+                  <input type="hidden" id="price" value="{{type.price}}">
+                   <button  class="mb-0 text-[20px] leading-[28px] text-[#000] focus:text-[#000] w-1/4 border-0 text-center nav-link veiw-selected-type" data-index="{{type.type}}" id="{{type.type}}" >
                       <img src="{{type.image.url}}" id="image" alt="1" class="w-full mb-[15px] rounded-[15px]"height="100">
                       {{type.type}}
                    </button>
@@ -220,9 +221,9 @@
                       <div class="xl:w-1/2 w-full px-[12px]">
                           <div class="lh-room-contain relative px-[12px] py-[24px]">
                               <div class="lh-contain-heading pb-[15px] flex justify-between">
-                                  <h4 class="xl:text-[22px] text-[18px] leading-[1.2] font-bold text-[#000] text-left">{{type.type}}</h4>
+                                  <h4 class="xl:text-[22px] text-[18px] leading-[1.2] font-bold text-[#000] text-left room-type"></h4>
                                   <div class="lh-room-price">
-                                      <h4 class="xl:text-[22px] text-[18px] text-[#ed5b31] font-bold leading-[22px]">$30 /<span class="ml-[5px] text-[14px] font-normal text-[#777]">Per night</span></h4>
+                                      <h4 class="xl:text-[22px] text-[18px] text-[#ed5b31] font-bold leading-[22px] room-price"></h4>
                                   </div>
                               </div>
                               <div class="lh-room-size d-flex flex-wrap">
@@ -260,7 +261,7 @@
                       </div>
                       <div class="xl:w-1/2 w-full">
                           <div class="room-img h-full w-full relative">
-                              <img src="{{type.image.url}}" alt="room-img" class="room-image h-full w-full">
+                              <img src="" alt="room-img" class="room-image h-full w-full">
                               <a href="room-details.html" class="link w-[200px] h-[200px] absolute bottom-[-200px] right-[-200px] bg-[#000000cc] rounded-[50%]">
                                   <i class="ri-arrow-right-line absolute bottom-[100px] right-[100px] text-[#fff] text-[25px]"></i>
                               </a>

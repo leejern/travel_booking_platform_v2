@@ -44,7 +44,7 @@ def room_type_detail(request,slug,rt_slug):
     rooms= Room.objects.filter(room_type=room_type,is_available=True)
 
 
-    hotel_id = request.GET.get("hotel-id")
+    id = request.GET.get("hotel-id")
     checkin = request.GET.get("checkin")
     checkout = request.GET.get("checkout")
     adults = request.GET.get("adults")

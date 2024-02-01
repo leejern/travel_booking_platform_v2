@@ -66,10 +66,10 @@
                                                     <i class="ri-arrow-right-line flex justify-end text-[16px] rotate-[-35deg]"></i>
                                                 </li> 
                                                 <li>
-                                                    <input type="hidden" class="room-id-{{room.id}}"value="{{room.id}}"id="room-id">
+                                                    <input type="hidden" class="room-id-{{room.id}}"value="{{room.id}}"id="room_id">
                                                 </li>  
                                                 <li>
-                                                    <input type="hidden" class="room-number-{{room.id}}"value="{{room.room_number}}" id="room-number">
+                                                    <input type="hidden" class="room-number-{{room.id}}"value="{{room.room_number}}" id="room_number">
                                                 </li>                                            
                                                 
                                             </ul>
@@ -83,12 +83,12 @@
                              </div>
                             {% endfor %}
                            </div>
-                           <input type="hidden" value="{{room.id}}" name="id">
-                           <input type="hidden" value="{{hotel.id}}" id="hotel-id">
-                           <input type="hidden" value="{{hotel.name}}" id="hotelname">
-                           <input type="hidden" value="{{room_type.type}}" id="room-type">
-                           <input type="hidden" value="{{room_type.price}}" id="room-price">
-                           <input type="hidden" value="{{room_type.number_of_beds}}" id="room-beds">
+                           <input type="hidden" value="{{hotel.id}}" id="id">
+                           <input type="hidden" value="{{hotel.name}}" id="hotel_name">
+                           <input type="hidden" value="{{room_type.type}}" id="room_name">
+                           <input type="hidden" value="{{room_type.price}}" id="room_price">
+                           <input type="hidden" value="{{room_type.number_of_beds}}" id="number_of_beds">
+                           <input type="hidden" value="{{room_type.id}}" id="room_type">
                            <input type="hidden" value="{{checkin}}" id="checkin">
                            <input type="hidden" value="{{checkout}}" id="checkout">
                            <input type="hidden" value="{{adults}}" id="adults">
