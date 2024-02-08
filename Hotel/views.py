@@ -1,7 +1,7 @@
 import json
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import *
-
+from datetime import datetime
 from .models import *
 # Create your views here.
 def home(request):
@@ -23,18 +23,6 @@ def hotel_detail(request,slug):
     }
     return render(request,"hotel/hotel_page.html",context) 
 
-def selected_room(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        selected_type = data.get('type')
-        selected_image = data.get('image')
-
-        # Perform any necessary processing with the selected data
-        # (e.g., store preferences, retrieve additional information)
-
-        return JsonResponse({'type': selected_type, 'image': selected_image})
-    else:
-        return HttpResponseBadRequest()
 
 
 def room_type_detail(request,slug,rt_slug): 
@@ -62,3 +50,40 @@ def room_type_detail(request,slug,rt_slug):
     }
 
     return render(request,"hotel/room_type_detail.html",context)
+
+
+def selected_rooms(request):
+    total=0
+    room_count=0
+    days=0
+    adults=0
+    children=0
+    checkin=""
+    checkout=""
+
+    if "selection_data_obj" in request.session:
+        for h_id,items in request.session['selection_data_obj'].items():
+            id= int(items['hotel_id'])
+            checkin= items['checkin']
+            checkout= items['checkout']
+            adults= int(items['adults'])
+            children= int(items['children'])
+            room_type_= int(items['room_type'])
+            room_id= int(items['room_id'])
+
+
+            room_type = RoomType.objects.get(id=room_type_)
+
+            date_format = "%Y-%m-%d"
+            checkin_date = datetime.strptime(checkin, date_format)
+            checkout_date = datetime.strptime(checkout, date_format)
+            time_difference = checkout_date - checkin_date
+
+            total_days = time_difference.days
+            room_count +=1
+            days = total_days
+            
+    else:
+        return redirect("/")
+    
+    return render(request,"hotel/selected_rooms.html")

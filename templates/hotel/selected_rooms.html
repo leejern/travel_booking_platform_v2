@@ -1,0 +1,291 @@
+{% extends "hotel/hotelbase.html" %}
+{% load static %}
+
+
+{% block body %}
+
+
+
+<!-- checkout-detsils -->
+<section class="checkout-page xl:py-[100px] py-[70px]">
+    <div class="flex flex-wrap justify-between items-center mx-auto 2xl:max-w-[1320px] xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px]">
+        <div class="flex flex-wrap w-full mb-[-24px]">
+            <div class="lg:w-8/12 w-full px-[12px] mb-[24px] check-dash" data-aos="fade-up" data-aos-duration="2000">
+                <div class="lh-checkout">
+                    <div class="lh-checkout-content">
+                        <div class="lh-checkout-inner mb-[-24px]">
+                            <div class="lh-checkout-wrap p-[24px] border-[1px] border-solid border-[#e3e1e1] bg-[#fff] rounded-[15px] mb-[24px]">
+                                <div class="lh-checkout-block lh-check-new mb-[24px]">
+                                    <h3 class="text-[20px] font-semibold font-Montserrat tracking-normal mb-[25px] relative block text-[#333] leading-[1]">Selected Rooms</h3>
+                                    <div class="lh-check-block-content">
+                                        {% comment %} <div class="mb-[14px] text-[#333] font-medium tracking-normal leading[1]">Checkout Options</div>
+                                        
+                                        <div class="lh-new-desc mt-[12px] relative leading-[24px] text-[#777] tracking-normal max-w-[64%]">By creating an account you will be able to shop faster,
+                                            be up to date on an order's status, and keep track of the orders you have
+                                            previously made.
+                                        </div>
+                                        <div class="mt-[24px] d-flex"><a href="#" class="duration-[0.3s] ease-in-out border-[1px] border-solid border-[#ed5b31] px-[15px] py-[5px] leading-[28px] bg-[#ed5b31] text-[#fff] relative z-[2] text-[15px] font-medium tracking-[1px] rounded-[10px] hover:bg-inherit hover:text-[#ed5b31]">Continue</a></div> {% endcomment %}
+                                        <div class="block pb-6 mb-6 -mx-4 border-b border-gray-200 dark:border-gray-700 md:flex">
+                                            
+                                            <div class="w-full px-4 md:2/3">
+                                                <div class="flex justify-between">
+                                                    <div>
+                                                        <p class="xl:text-[35px] xl:align-[18px] text-[20px] align-[20px] "> King Room</p><br>
+                                                        <p class="xl:text-[35px] xl:align-[18px] text-[20px] align-[20px] "> RM04</p>
+                                                        <div>
+                                                            {% comment %} <button
+                                                                class="px-4 py-2 mb-4 mr-4 font-medium text-center text-blue-700 border border-blue-500 rounded-md md:mb-0 dark:hover:border-gray-900 dark:hover:bg-gray-900 dark:border-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-gray-100">Edit</button>
+                                                            <button
+                                                                class="px-4 py-2 font-medium text-center text-blue-700 border border-blue-500 rounded-md dark:hover:border-gray-900 dark:hover:bg-gray-900 dark:text-gray-400 dark:border-gray-700 hover:bg-blue-600 hover:text-gray-100">Remove</button> {% endcomment %}
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="xl:text-[35px] xl:align-[18px] text-[20px] align-[20px]">$299.00</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="lh-checkout-wrap p-[24px] border-[1px] border-solid border-[#e3e1e1] bg-[#fff] rounded-[15px] mb-[24px]">
+                                <div class="lh-checkout-block lh-check-bill">
+                                    <h3 class="text-[20px] font-semibold font-Montserrat tracking-normal mb-[25px] relative block text-[#333] leading-[1]">Billing Details</h3>
+                                    <div class="lh-bl-block-content">
+                                        <div class="mb-[14px] text-[#333] font-medium tracking-normal leading[1]">Checkout Options</div>
+                                        <span class="lh-bill-option mb-[32px] block">
+                                            <span class="mr-[45px]">
+                                                <input type="radio" id="bill1" name="radio-group">
+                                                <label for="bill1">I want to use an existing address</label>
+                                            </span>
+                                            <span class="mr-[45px]">
+                                                <input type="radio" id="bill2" name="radio-group" checked>
+                                                <label for="bill2">I want to use new address</label>
+                                            </span>
+                                        </span>
+                                        <div class="lh-check-bill-form">
+                                            <form action="#" method="post" class="flex flex-row flex-wrap mx-[-15px] mb-[-15px]">
+                                                <span class="lh-bill-wrap sm:w-[50%] w-full px-[15px] mb-[15px]">
+                                                    <label class="mb-[7px] text-[#333] text-[15px] font-medium tracking-normal leading-[1]">First Name*</label>
+                                                    <input type="text" name="firstname" class="bg-transparent px-[15px] w-full h-[50px] rounded-[15px] outline-0 border border-solid border-[#e3e1e1] text-[14px] text-[#333]" placeholder="Enter your first name" required>
+                                                </span>
+                                                <span class="lh-bill-wrap sm:w-[50%] w-full px-[15px] mb-[15px]">
+                                                    <label class="mb-[7px] text-[#333] text-[15px] font-medium tracking-normal leading-[1]">Last Name*</label>
+                                                    <input type="text" name="lastname" class="bg-transparent px-[15px] w-full h-[50px] rounded-[15px] outline-0 border border-solid border-[#e3e1e1] text-[14px] text-[#333]" placeholder="Enter your last name" required>
+                                                </span>
+                                                <span class="lh-bill-wrap w-full px-[15px] mb-[15px]">
+                                                    <label class="mb-[7px] text-[#333] text-[15px] font-medium tracking-normal leading-[1]">Address</label>
+                                                    <input type="text" class="bg-transparent px-[15px] w-full h-[50px] rounded-[15px] outline-0 border border-solid border-[#e3e1e1] text-[14px] text-[#333]" name="address" placeholder="Address Line 1">
+                                                </span>
+                                                <span class="lh-bill-wrap sm:w-[50%] w-full px-[15px] mb-[15px]">
+                                                    <label class="mb-[7px] text-[#333] text-[15px] font-medium tracking-normal leading-[1]">City *</label>
+                                                    <span class="lh-bl-select-inner relative flex items-center rounded-[15px] text-[14px] px-[15px] py-0 w-full h-[50px] border border-solid border-[#e3e1e1]">
+                                                        <select name="ec_select_city" id="lh-select-city" class="hidden">
+                                                            <option selected disabled>City</option>
+                                                            <option value="1">City 1</option>
+                                                            <option value="2">City 2</option>
+                                                            <option value="3">City 3</option>
+                                                            <option value="4">City 4</option>
+                                                            <option value="5">City 5</option>
+                                                        </select>
+                                                    </span>
+                                                </span>
+                                                <span class="lh-bill-wrap sm:w-[50%] w-full px-[15px] mb-[15px]">
+                                                    <label class="mb-[7px] text-[#333] text-[15px] font-medium tracking-normal leading-[1]">Post Code</label>
+                                                    <input type="text" name="postalcode" class="bg-transparent px-[15px] w-full h-[50px] rounded-[15px] outline-0 border border-solid border-[#e3e1e1] text-[14px] text-[#333]" placeholder="Post Code">
+                                                </span>
+                                                <span class="lh-bill-wrap sm:w-[50%] w-full px-[15px] mb-[15px]">
+                                                    <label class="mb-[7px] text-[#333] text-[15px] font-medium tracking-normal leading-[1]">Country *</label>
+                                                    <span class="lh-bl-select-inner relative flex items-center rounded-[15px] text-[14px] px-[15px] py-0 w-full h-[50px] border border-solid border-[#e3e1e1]">
+                                                        <select name="ec_select_country" id="lh-select-country" class="hidden">
+                                                            <option selected disabled>Country</option>
+                                                            <option value="1">Country 1</option>
+                                                            <option value="2">Country 2</option>
+                                                            <option value="3">Country 3</option>
+                                                            <option value="4">Country 4</option>
+                                                            <option value="5">Country 5</option>
+                                                        </select>
+                                                    </span>
+                                                </span>
+                                                <span class="lh-bill-wrap sm:w-[50%] w-full px-[15px] mb-[15px]">
+                                                    <label class="mb-[7px] text-[#333] text-[15px] font-medium tracking-normal leading-[1]">Region State</label>
+                                                    <span class="lh-bl-select-inner relative flex items-center rounded-[15px] text-[14px] px-[15px] py-0 w-full h-[50px] border border-solid border-[#e3e1e1]">
+                                                        <select name="ec_select_state" id="lh-select-state" class="hidden">
+                                                            <option selected disabled>Region/State</option>
+                                                            <option value="1">Region/State 1</option>
+                                                            <option value="2">Region/State 2</option>
+                                                            <option value="3">Region/State 3</option>
+                                                            <option value="4">Region/State 4</option>
+                                                            <option value="5">Region/State 5</option>
+                                                        </select>
+                                                    </span>
+                                                </span>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="lg:w-4/12 w-full px-[12px] mb-[24px]" data-aos="fade-up" data-aos-duration="3000">
+                <div class="lh-side-room bg-[#f7f5f1] rounded-[15px] sticky top-[80px]">
+                    <h4 class="lh-room-inner-heading p-[20px] text-[18px] text-[#000] font-bold border-b border-solid border-[#e3e1e1]">
+                        Reservation</h4>
+                    <div class="lh-side-reservation pt-0 pr-[24px] pl-[24px] pb-[24px]">
+                        <form>
+                            <div class="lh-side-reservation-from relative">
+                                <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Check In</label>
+                                <div class="calendar" id="date_1">
+                                    <input type="text" class="border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd" placeholder="Sep 09,2023">
+                                    <i class="ri-calendar-line text-[#ed5b31] absolute cursor-pointer text-[18px] right-0 p-[12px]"></i>
+                                </div>
+                            </div>
+                            <div class="lh-side-reservation-from relative">
+                                <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Check Out</label>
+                                <div class="calendar" id="date_2">
+                                    <input type="text" class="border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd" placeholder="Sep 09,2023">
+                                    <i class="ri-calendar-line text-[#ed5b31] absolute cursor-pointer text-[18px] right-0 p-[12px]"></i>
+                                </div>
+                            </div>
+                            <div class="lh-side-reservation-from relative">
+                                <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Room</label>
+                                <div class="custom-select border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd">
+                                    <select class="hidden">
+                                        <option value="option1">1</option>
+                                        <option value="option2">2</option>
+                                        <option value="option3">3</option>
+                                        <option value="option4">4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="lh-side-reservation-from relative">
+                                <div class="flex flex-wrap w-full mb-[-24px]">
+                                    <div class="md:w-1/2 w-full md:pr-[12px] pr-[0] mb-[24px]">
+                                        <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Adult</label>
+                                        <div class="custom-select border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd">
+                                            <select class="hidden">
+                                                <option value="option1">1</option>
+                                                <option value="option2">2</option>
+                                                <option value="option3">3</option>
+                                                <option value="option4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 w-full md:pl-[12px] pl-[0] mb-[24px]">
+                                        <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Children</label>
+                                        <div class="custom-select border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd">
+                                            <select class="hidden">
+                                                <option value="option1">1</option>
+                                                <option value="option2">2</option>
+                                                <option value="option3">3</option>
+                                                <option value="option4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lh-side-reservation-from ex-service relative">
+                                <h4 class="text-[#000] text-[18px] pb-[15px] font-bold leading-[16px]">Extra Services</h4>
+                                <div class="form-check leading-[21px] pb-[10px]">
+                                    <input class="form-check-input" type="checkbox" name="flexcheckboxDefault" id="flexcheckboxDefault1">
+                                    <label class="form-check-label" for="flexcheckboxDefault1">Air Conditioner</label>
+                                </div>
+                                <div class="form-check leading-[21px] pb-[10px]">
+                                    <input class="form-check-input" type="checkbox" name="flexcheckboxDefault" id="flexcheckboxDefault2" checked>
+                                    <label class="form-check-label" for="flexcheckboxDefault2">Free Internet</label>
+                                </div>
+                                <div class="form-check leading-[21px] pb-[10px]">
+                                    <input class="form-check-input" type="checkbox" name="flexcheckboxDefault" id="flexcheckboxDefault3" checked>
+                                    <label class="form-check-label" for="flexcheckboxDefault3"> LCD Television</label>
+                                </div>
+                                <div class="form-check leading-[21px]">
+                                    <input class="form-check-input" type="checkbox" name="flexcheckboxDefault" id="flexcheckboxDefault4" checked>
+                                    <label class="form-check-label" for="flexcheckboxDefault4">Microwave</label>
+                                </div>
+                            </div>
+                            <div class="lh-side-reservation-from relative">
+                                <h4 class="text-[#000] text-[18px] pb-[15px] font-bold leading-[16px]">Your Price</h4>
+                                <span>$210 / per room</span>
+                            </div>
+                            <div class="lh-side-reservation-from relative">
+                                <div class="lh-side-reservation-from-buttons d-flex pt-[24px]">
+                                    <a class="duration-[0.3s] ease-in-out border-[1px] border-solid border-[#ed5b31] px-[15px] py-[5px] leading-[28px] bg-[#ed5b31] text-[#fff] relative z-[2] text-[15px] font-medium tracking-[1px] rounded-[10px] hover:bg-inherit hover:text-[#ed5b31]" href="checkout.html">
+                                        Check Now
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Tap to top -->
+<a href="#" class="back-to-top hidden fixed right-[15px] bottom-[15px] z-10 hover:text-[#fff] cursor-pointer w-[38px] h-[38px] rounded-[20px] bg-[#ed5b31] text-[#fff] text-center text-[22px] leading-relaxed result-placeholder">
+    <i class="ri-arrow-up-double-line text-[20px]"></i>
+</a>
+
+<!-- Side-tool -->
+<div class="tool-overlay hidden w-full h-screen fixed top-0 left-0 bg-[#000000b3] z-[16]"></div>
+<div class="lh-tool w-[280px] fixed top-0 right-[-280px] z-[16] duration-[0.4s] ease text-[#000]">
+    <div class="flex text-[#000] select-none">
+        <button type="button" class="btn-lh-tool result-placeholder close-tool duration-[0.3s] ease-in h-[40px] w-[40px] px-[10px] mt-[200px] ml-[-40px] border-0 rounded-l-[10px] bg-[#000] text-[#fff]">
+            <i class="ri-settings-line text-[20px]"></i>
+            <span class="hidden">tool</span>
+        </button>
+        <div class="h-screen p-0 m-0 bg-[#fff]">
+            <div class="p-[24px] flex items-center justify-between border-b-[1px] border-solid border-[#e3e1e1]">
+                <h5 class="text-[#000] font-bold text-[18px]">Tools</h5>
+            </div>
+            <div class="pt-[24px] pr-[24px] pl-[24px]">
+                <h2 class="mb-0 text-left text-[15px] font-bold text-[#000]">Select Color</h2>
+            </div>
+            <ul class="lh-color p-[24px] m-0 border-b-[1px] border-solid border-[#e3e1e1]">
+                <li class="c1 bg-[#ed5b31] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px] active-colors"></li>
+                <li class="c2 bg-[#3e9172] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px]"></li>
+                <li class="c3 bg-[#677993] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px]"></li>
+                <li class="c4 bg-[#d31111] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px]"></li>
+                <li class="c5 bg-[#d3b41c] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px]"></li>
+                <li class="c6 bg-[#db98b1] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px]"></li>
+                <li class="c7 bg-[#799ffe] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px]"></li>
+                <li class="c8 bg-[#F2709C] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px]"></li>
+                <li class="c9 bg-[#ff8763] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px]"></li>
+            </ul>
+            <div class="pt-[24px] pr-[24px] pl-[24px]">
+                <h2 class="mb-0 text-left text-[15px] font-bold text-[#000]">Dark mode</h2>
+            </div>
+            <ul class="dark-mode p-[24px] m-0 border-b-[1px] border-solid flex border-[#e3e1e1]">
+                <li class="dark text-[#fff] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px] border-[1px] border-solid border-[#e3e1e1]"></li>
+                <li class="white text-[#000] relative inline-block align-middle h-[30px] w-[30px] rounded-[50%] cursor-pointer m-[5px] border-[1px] border-solid border-[#e3e1e1] active-dark-mode"></li>
+            </ul>
+            <div class="pt-[24px] pr-[24px] pl-[24px]">
+                <h2 class="mb-0 text-left text-[15px] font-bold text-[#000]">Skin mode</h2>
+            </div>
+            <ul class="skin-mode p-[24px] m-0 border-b-[1px] border-solid flex border-[#e3e1e1]">
+                <li class="skin-1 relative inline-block m-[5px]">
+                    <span class="cursor-pointer">
+                        <img src="assets/img/skin/1.png" alt="skin-1" class="h-[60px] w-[60px] rounded-[5px] border-[1px] border-solid border-[#e3e1e1]">
+                    </span>
+                </li>
+                <li class="skin-2 relative inline-block m-[5px]">
+                    <span class="cursor-pointer">
+                        <img src="assets/img/skin/2.png" alt="skin-2" class="h-[60px] w-[60px] rounded-[5px] border-[1px] border-solid border-[#e3e1e1]">
+                    </span>
+                </li>
+                <li class="skin-3 relative inline-block m-[5px] active">
+                    <span class="cursor-pointer">
+                        <img src="assets/img/skin/3.png" alt="skin-3" class="h-[60px] w-[60px] rounded-[5px] border-[1px] border-solid border-[#e3e1e1]">
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock body %}
