@@ -3,7 +3,27 @@
 
 
 {% block body %}
-
+<section class="section-banner">
+    <div class="banner-image flex flex-wrap w-full justify-center sm:h-[400px] h-[300px] m-0 bg-[url('{{room_type.image.url}}')] bg-cover bg-bottom">
+       <div class="w-full sm:h-[400px] h-[300px] absolute bg-[#000000bf]"></div>
+       <div class="flex items-center justify-center text-center z-2">
+          <div class="mt-[65px]">
+             <h2 class="mb-[12px] 2xl:text-[40px] xl:text-[38px] lg:text-[36px] md:text-[34px] sm:text-[30px] text-[28px] font-bold">
+                {{room_type.type}}
+             </h2>
+             <h5 class="text-[16px]">
+                <span>
+                   <a href="index.html" class="text-[#fff] hover:text-[#fff]">Home</a>
+                </span>
+                <span class="font-bold"> / </span>
+                <span>
+                   <a href="javascript:void(0)" class="text-[#fff] hover:text-[#fff]">Room Details</a>
+                </span>
+             </h5>
+          </div>
+       </div>
+    </div>
+ </section>
 
 <!-- Room-detsils -->
 <section class="section-room-detsils xl:py-[100px] py-[70px]">
@@ -64,7 +84,7 @@
                            </div>
                            <input type="hidden" value="{{hotel.id}}" id="id">
                            <input type="hidden" value="{{hotel.name}}" id="hotel_name">
-                           <input type="hidden" value="{{room_type.type}}" id="room_name">
+                           <input type="text" value="{{room_type.type}}" id="room_name">
                            <input type="hidden" value="{{room_type.price}}" id="room_price">
                            <input type="hidden" value="{{room_type.number_of_beds}}" id="number_of_beds">
                            <input type="hidden" value="{{room_type.id}}" id="room_type">

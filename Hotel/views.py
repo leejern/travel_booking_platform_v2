@@ -38,7 +38,7 @@ def room_type_detail(request,slug,rt_slug):
     adults = request.GET.get("adults")
     children = request.GET.get("children")
 
-    context = { 
+    context = {  
         "hotel":hotel, 
         "room_type":room_type, 
         "rtype":rtype,          
@@ -55,19 +55,21 @@ def room_type_detail(request,slug,rt_slug):
 def selected_rooms(request):
     total=0
     room_count=0
-    days=0
+    total_days=0
     adults=0
     children=0
     checkin=""
     checkout=""
+    # room_type=None
 
     if "selection_data_obj" in request.session:
+        hotel = None
         for h_id,items in request.session['selection_data_obj'].items():
             id= int(items['hotel_id'])
             checkin= items['checkin']
             checkout= items['checkout']
-            adults= int(items['adults'])
-            children= int(items['children'])
+            adults= int(items['adults']) if not None else 0
+            children= int(items['children']) if not None else 0
             room_type_= int(items['room_type'])
             room_id= int(items['room_id'])
 
@@ -82,8 +84,32 @@ def selected_rooms(request):
             total_days = time_difference.days
             room_count +=1
             days = total_days
+            price = int(room_type.price)
+            # room_name_= room_type.type
+            # room_type=room_name_
+            room_price = price*room_count 
+            total = room_price*days
+
+            hotel = Hotel.objects.get(id=id)
+            print(h_id,items)
+            # print("rooom name ===============================================================================",room_name)
+
+            context = {
+                "data": request.session['selection_data_obj'],
+                "total_selected_item": len(request.session['selection_data_obj']),
+                # "room_name":room_type,
+                "total":total,
+                "total_days":total_days,
+                "adults":adults,
+                "children":children,
+                "checkin":checkin,
+                "checkout":checkout,
+                "hotel":hotel,
+            }
+
+        return render(request,"hotel/selected_rooms.html",context)
+
             
     else:
         return redirect("/")
     
-    return render(request,"hotel/selected_rooms.html")

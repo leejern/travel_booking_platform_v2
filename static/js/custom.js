@@ -8,6 +8,7 @@ $(document).ready(function(){
         let hotel_name = $("#hotel_name").val()
         let room_id = $(`.room-id-${id}`).val()
         let room_type = $("#room_type").val()
+        let room_name = $("#room_name").val()
         let room_number = $(`.room-number-${id}`).val()
         let room_price = $("#room_price").val()
         let number_of_beds = $("#number_of_beds").val()
@@ -20,6 +21,7 @@ $(document).ready(function(){
         console.log(hotel_id);
         console.log(hotel_name);
         console.log(room_id);
+        console.log("rooooooooooooooooooooooooooooo",room_name);
         console.log(room_type);
         console.log(room_number);
         console.log(room_price);
@@ -37,6 +39,7 @@ $(document).ready(function(){
                 "hotel_name":hotel_name,
                 "room_id":room_id,
                 "room_type":room_type,
+                "room_name":room_name,
                 "room_price":room_price,
                 "number_of_beds":number_of_beds,
                 "room_number":room_number,
