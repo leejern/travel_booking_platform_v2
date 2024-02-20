@@ -6,4 +6,5 @@ app_name="booking"
 urlpatterns =[ 
     path("check_room_availabilty", check_room_availabilty, name="check_room_availabilty"),
     path("add_to_selection/", add_to_selection, name="add_to_selection"),
+    path("delete_selection/", delete_selection, name="delete_selection"),
 ]

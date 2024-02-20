@@ -18,18 +18,7 @@ $(document).ready(function(){
         let children = $("#children").val()
 
 
-        console.log(hotel_id);
-        console.log(hotel_name);
-        console.log(room_id);
-        console.log("rooooooooooooooooooooooooooooo",room_name);
-        console.log(room_type);
-        console.log(room_number);
-        console.log(room_price);
-        console.log(number_of_beds);
-        console.log(checkin);
-        console.log(checkout);
-        console.log(adults);
-        console.log(children);
+        
 
         $.ajax({ 
             url:'/booking/add_to_selection/',
@@ -49,7 +38,7 @@ $(document).ready(function(){
                 "children":children,
             }, 
             dataType:"json",
-            beoreSend: function(){
+            beforeSend: function(){
                 console.log("Sending data to server ............");
             }, 
             success: function(response){
@@ -60,30 +49,7 @@ $(document).ready(function(){
 
         
 
-        // $.ajax({
-        //     url:'booking/add_to_selection', 
-        //     data: {
-        //         "id":id,
-        //         "hotel_id":hotel_id,
-        //         "hotel_name":hotel_name,
-        //         "room_id":room_id,
-        //         "room_type":room_type,
-        //         "room_number":room_number,
-        //         "room_price":room_price,
-        //         "number_of_beds":number_of_beds,
-        //         "checkin":checkin,
-        //         "checkout":checkout,
-        //         "adults":adults,
-        //         "children":children,
-        //     },
-        //     dataType:"json",
-        //     beforeSend:function(){
-        //         console.log("sending data to server");
-        //     },
-        //     success: function(response){
-        //         console.log(response);
-        //     },
-        // })
+       
         
     })
     $('.veiw-selected-type').on("click", function(){
@@ -102,5 +68,23 @@ $(document).ready(function(){
 
         console.log(roomName);
         // $('.room-type').innerText=room_name
+    })
+    
+})
+
+$(document).on("click",".delete-item",function(){
+    let id = $(this).attr("data-item")
+    let button = $(this) 
+    $.ajax({
+        url:'/booking/delete_selection', 
+        data:{ 
+            "id":id
+        }, 
+        beforeSend: function(){
+            button.html("<i class='fas fa-spinner fa-spin'></i>")
+        }, 
+        success: function(res){
+            console.log(res);
+        }
     })
 })

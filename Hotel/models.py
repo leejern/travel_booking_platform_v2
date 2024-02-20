@@ -168,6 +168,7 @@ class Booking(models.Model):
 
     fullname = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=100,null=True, blank=True)
 
     hotel = models.ForeignKey(Hotel, on_delete=models.SET_NULL,null=True, blank=True)
     room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL,null=True, blank=True)

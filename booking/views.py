@@ -1,7 +1,9 @@
+from datetime import datetime
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect, JsonResponse
 from Hotel.models import *
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -65,3 +67,64 @@ def add_to_selection(request):
         "total_selected_items":len(request.session['selection_data_obj'])
     }
     return JsonResponse(data)
+
+
+def delete_selection(request):
+    hotel_id = str(request.GET['id'])
+    if "selection_data_obj" in request.session:
+        if hotel_id in request.session['selection_data_obj']:
+            selection_data = request.session['selection_data_obj']
+            del request.session['selection_data_obj'][hotel_id]
+            request.session['selection_data_obj'] = selection_data
+
+    total=0
+    room_count=0
+    total_days=0
+    adults=0
+    children=0
+    checkin=""
+    checkout=""
+    hotel=None
+
+    if 'selection_data_object' in request.session:
+        for h_id,items in request.session['selection_data_obj'].items():
+            id= int(items['hotel_id'])
+            checkin= items['checkin']
+            checkout= items['checkout']
+            adults= int(items['adults']) if not None else 0
+            children= int(items['children']) if not None else 0
+            room_type_= int(items['room_type'])
+            room_id= int(items['room_id'])
+
+
+            room_type = RoomType.objects.get(id=room_type_)
+
+            date_format = "%Y-%m-%d"
+            checkin_date = datetime.strptime(checkin, date_format)
+            checkout_date = datetime.strptime(checkout, date_format)
+            time_difference = checkout_date - checkin_date
+
+            total_days = time_difference.days
+            room_count +=1
+            days = total_days
+            price = int(room_type.price)
+            # room_name_= room_type.type
+            # room_type=room_name_
+            room_price = price*room_count 
+            total = room_price*days
+    context = render_to_string(
+        'hotel/async/selected_room.html',
+        {
+            "data":request.session['selection_data_obj'],
+            "total_selected_items":len(request.session['selection_data_obj']),
+            "total":total, 
+            "total_days":total_days, 
+            "adults":adults, 
+            "chilren":children,
+            "checkin":checkin,
+            "checkout":checkout,
+            "hotel":hotel,
+        }
+    )
+    print("=======================================================\n=======================",context)
+    return JsonResponse({"data":context, "total_selected_items":len(request.session['selection_data_obj']),})
