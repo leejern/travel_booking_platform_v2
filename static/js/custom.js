@@ -53,7 +53,7 @@ $(document).ready(function(){
         
     })
     $('.veiw-selected-type').on("click", function(){
-        let button = $(this)
+        let button = $(this) 
         // let room_name = button.attr("data-index")
         // let room_image = $("#image").attr("src")
 
@@ -80,11 +80,12 @@ $(document).on("click",".delete-item",function(){
         data:{ 
             "id":id
         }, 
+        dataType:'json',
         beforeSend: function(){
             button.html("<i class='fas fa-spinner fa-spin'></i>")
         }, 
         success: function(res){
-            console.log(res);
+            $('.selection-list').html(res.data)
         }
-    })
+    }) 
 })

@@ -53,6 +53,7 @@ def room_type_detail(request,slug,rt_slug):
 
 
 def selected_rooms(request):
+    # context = {}
     total=0
     room_count=0
     total_days=0
@@ -124,9 +125,7 @@ def selected_rooms(request):
 
             return redirect("Hotel:checkout",booking.booking_id)
 
-            
-
-
+        
         for h_id,items in request.session['selection_data_obj'].items():
             id= int(items['hotel_id'])
             checkin= items['checkin']
@@ -154,27 +153,26 @@ def selected_rooms(request):
             total = room_price*days
 
             hotel = Hotel.objects.get(id=id)
-            # print(h_id,items)
-            # print("rooom name ===============================================================================",room_name)
-
-            context = {
-                "data": request.session['selection_data_obj'],
-                "total_selected_item": len(request.session['selection_data_obj']),
-                # "room_name":room_type,
-                "total":total,
-                "total_days":total_days,
-                "adults":adults,
-                "children":children,
-                "checkin":checkin,
-                "checkout":checkout,
-                "hotel":hotel,
-            }
+            
+        context = {
+            "data": request.session['selection_data_obj'],
+            "total_selected_item": len(request.session['selection_data_obj']),
+            # "room_name":room_type,
+            "total":total,
+            "total_days":total_days,
+            "adults":adults,
+            "children":children,
+            "checkin":checkin,
+            "checkout":checkout,
+            "hotel":hotel,
+        }
 
         return render(request,"hotel/selected_rooms.html",context)
 
             
     else:
         return redirect("/")
+    # return render(request,"hotel/selected_rooms.html",context)
     
 
 def checkout(request,booking_id):

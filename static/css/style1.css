@@ -41,93 +41,95 @@
 -----------------------------------------------------------------------------------*/
 /* base */
 /* Typography */
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Cardo");
 @font-face {
     font-family: Cardo;
-    src: url("../fonts/Cardo-Regular.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Cardo");
     font-weight: 400;
     font-style: normal;
   }
   @font-face {
     font-family: Cardo;
-    src: url("../fonts/Cardo-Bold.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Cardo");
     font-weight: 700;
     font-style: normal;
   }
   @font-face {
     font-family: Cardo;
-    src: url("../fonts/Cardo-Italic.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Cardo");
     font-weight: 400;
     font-style: italic;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-Thin.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 100;
     font-style: normal;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-ThinItalic.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 100;
     font-style: italic;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-Light.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 300;
     font-style: normal;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-LightItalic.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 300;
     font-style: italic;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-Regular.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 400;
     font-style: normal;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-Regular.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 400;
     font-style: italic;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-Medium.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 500;
     font-style: normal;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-MediumItalic.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 500;
     font-style: italic;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-Bold.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 700;
     font-style: normal;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-BoldItalic.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 700;
     font-style: italic;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-Black.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 900;
     font-style: normal;
   }
   @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-BlackItalic.ttf");
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-weight: 900;
     font-style: italic;
   }

@@ -127,4 +127,4 @@ def delete_selection(request):
         }
     )
     print("=======================================================\n=======================",context)
-    return JsonResponse({"data":context, "total_selected_items":len(request.session['selection_data_obj']),})
+    return JsonResponse({"data":context, "total_selected_items":len(request.session['selection_data_obj']),}) 
