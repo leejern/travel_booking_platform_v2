@@ -245,3 +245,18 @@ class StaffOnDuty(models.Model):
     
     class Meta:
         verbose_name_plural = "Staff on Duties"
+
+
+class Coupon(models.Model):
+    code=models.CharField( max_length=50)
+    type=models.CharField( max_length=50,default='Percentage')
+    discount = models.IntegerField(default=1)
+    redemptions = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+    valid_from = models.DateField()
+    valid_to = models.DateField()
+    cid = ShortUUIDField(unique=True,length=10,max_length=10)
+
+    def __str__(self):
+        return f"{self.code}"

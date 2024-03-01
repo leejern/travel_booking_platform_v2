@@ -177,7 +177,13 @@ def selected_rooms(request):
 
 def checkout(request,booking_id):
     booking = Booking.objects.get(booking_id=booking_id)
-
+    if request.method == "POST":
+        code = request.POST.get("code")
+        try:
+            coupon = Coupon.objects.get(code__iexact=code,active=True)
+            print("coupon=================",coupon)
+        except: 
+            print("Coupon dont exist")
     context = {
         "booking":booking
     }
