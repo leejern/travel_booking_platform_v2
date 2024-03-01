@@ -6,11 +6,27 @@
 
 
 
-<!-- checkout-detsils -->
+<!-- checkout-detsils --> 
 <section class="checkout-page xl:py-[100px] py-[70px] selection-list">
     <div class="flex flex-wrap justify-between items-center mx-auto 2xl:max-w-[1320px] xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px]">
+    
         <div class="flex flex-wrap w-full mb-[-24px]">
             <div class="lg:w-8/12 w-full px-[12px] mb-[24px] check-dash" data-aos="fade-up" data-aos-duration="2000">
+                {% if messages %}
+                    <ul class="items-center">
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <li class="bg-green-400 text-white px-4 py-2 rounded-lg mb-2">
+                            {% elif message.tags == 'warning' %}
+                                <li class="bg-yellow-500 text-white px-4 py-2 rounded-lg mb-2">
+                            {% elif message.tags == 'error' %}
+                                <li class="bg-rose-500 text-white px-4 py-2 rounded-lg mb-2">
+                            {% endif %}
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+            {% endif %}
                 <div class="lh-checkout">
                     <div class="lh-checkout-content">
                         <div class="lh-checkout-inner mb-[-24px]">
@@ -197,17 +213,32 @@
                                             <p class="mb-[14px] text-[#333] font-medium tracking-normal leading[1]">Discount</p>                                        
                                         </div>
                                         <div>
-                                            <p class="mb-[14px] text-[#333] font-medium tracking-normal leading[1]">{{booking.saved}}</p>
+                                            <p class="mb-[14px] text-[#333] font-medium tracking-normal leading[1]">Kshs. {{booking.saved}}</p>
                                         </div>
                                     
                                 </div>
                             </div>
                         </div> 
-                        
-                        <div class="block pb-6 mb-6 -mx-4 border-t border-gray-300 dark:border-gray-700 md:flex"> 
-                            <button type="submit" class="duration-[0.3s] ease-in-out border-[1px] border-solid border-[#ed5b31] px-[15px] py-[5px] leading-[28px] bg-[#ed5b31] text-[#fff] relative z-[2] text-[15px] font-medium tracking-[1px] rounded-[10px] hover:bg-inherit hover:text-[#ed5b31]">Continue to checkout
+                        <div class="block pb-4 mb-2 -mx-4 border-t border-gray-300 dark:border-gray-700 md:flex">                                            
+                            <div class="w-full px-4 md:1/3">
+                                <div class="flex justify-between">
+                                    
+                                        <div>
+                                            <p class="mb-[14px] text-[#333] font-medium tracking-normal leading[1]">Total</p>                                        
+                                        </div>
+                                        <div>
+                                            <p class="mb-[14px] text-[#333] font-medium tracking-normal leading[1]">Kshs.   {{booking.total}}</p>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="block pb-6 mb-6 -mx-4  border-gray-300 dark:border-gray-700 md:flex"> 
+                            <div id="paypal-button-container"></div>
+                            
+                            <!-- <button type="submit" class="duration-[0.3s] ease-in-out border-[1px] border-solid border-[#ed5b31] px-[15px] py-[5px] leading-[28px] bg-[#ed5b31] text-[#fff] relative z-[2] text-[15px] font-medium tracking-[1px] rounded-[10px] hover:bg-inherit hover:text-[#ed5b31]">Continue to checkout
                                 
-                            </button>                                           
+                            </button>                                            -->
                            
                         </div> 
                                                                      
@@ -219,6 +250,35 @@
             </div>
         </div>
     </div>
+    <script src="https://www.paypal.com/sdk/js?client-id=test"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let booking_total = {{booking.total}};
+        let booking_id = "{{booking.booking_id}}";
+        let success_id = "{{booking.success_id}}";
+        console.log(success_id);
+        paypal.Buttons({
+            createOrder : function (data, actions) {
+                return actions.order.create({
+                    purchase_units:[{
+                        amount:{
+                            value:booking_total,
+                        }
+                    }]
+                })
+                
+            }, 
+
+            onApprove: function(data, actions){
+                return actions.order.capture().then(function(Detail){
+                    if (Detail.status === "COMPLETED") {
+                        //redirect to the success page 
+                        window.location.href = `/success/${booking_id}/?success=${success_id}&payer_id=${Detail.id}&status=${Detail.status}&booking_total=${booking_total}`;
+                    }
+                })
+            }
+        }).render("#paypal-button-container")
+    </script>
 </section>
 
 

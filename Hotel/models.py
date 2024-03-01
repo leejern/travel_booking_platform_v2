@@ -176,7 +176,7 @@ class Booking(models.Model):
     before_discount = models.DecimalField(max_digits=12,decimal_places=2,default=0.00)
     total = models.DecimalField(max_digits=12,decimal_places=2,default=0.00)
     saved = models.DecimalField(max_digits=12,decimal_places=2,default=0.00)
-
+    coupons = models.ManyToManyField("Hotel.Coupon",blank=True)
     checkin_date = models.DateField()
     checkout_date = models.DateField()
 
@@ -193,6 +193,7 @@ class Booking(models.Model):
     check_out_tracker = models.BooleanField(default=False)
 
     booking_id = models.CharField(max_length=10, unique=True, editable=True, default=generate_random_string)
+    success_id = ShortUUIDField(length=10,max_length=10,alphabet='abcdefghijklmnopqrstuvwxyz',null=True,blank=True)
     stripe_payment_intent = models.CharField(max_length=100,blank=True,null=True)
     payment_id = models.CharField(max_length=100,blank=True,null=True)
 

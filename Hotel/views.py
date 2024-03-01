@@ -1,7 +1,9 @@
 import json
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import *
+from django.contrib import messages
 from datetime import datetime
+
 from .models import *
 # Create your views here.
 def home(request):
@@ -181,9 +183,25 @@ def checkout(request,booking_id):
         code = request.POST.get("code")
         try:
             coupon = Coupon.objects.get(code__iexact=code,active=True)
-            print("coupon=================",coupon)
+            if coupon in booking.coupons.all():
+                messages.warning(request,"Coupon already Activated!")
+                return redirect('Hotel:checkout',booking.booking_id)
+            else:
+                if coupon.type == "Percentage":
+                    discount = booking.total* coupon.discount / 100
+                else: 
+                    discount = coupon.discount
+                
+                booking.coupons.add(coupon)
+                booking.total -= discount
+                booking.saved += discount
+                booking.save()
+                coupon.redemptions +=1
+
+                messages.success(request, "Coupon Activated!")
+                return redirect('Hotel:checkout',booking.booking_id)
         except: 
-            print("Coupon dont exist")
+            messages.error(request,"Coupon Does Not Exist")
     context = {
         "booking":booking
     }

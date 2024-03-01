@@ -32,6 +32,9 @@ class RoomTypeAdmin(admin.ModelAdmin):
     list_display= ['hotel','type','price']
     prepopulated_fields = {'slug':('type',)}
 
+class CouponAdmin(admin.ModelAdmin):
+    list_display = ['code','active','type','discount','valid_from','valid_to','redemptions']
+
 admin.site.register(Hotel,HotelAdmin)
 admin.site.register(HotelGallery)
 admin.site.register(HotelFeatures)
@@ -41,6 +44,6 @@ admin.site.register(Room)
 admin.site.register(Booking)
 admin.site.register(GuestActivityLog)
 admin.site.register(StaffOnDuty)
-admin.site.register(Coupon)
+admin.site.register(Coupon,CouponAdmin)
 
 

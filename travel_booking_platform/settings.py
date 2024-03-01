@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-y)nh8u!wv1uw=(x_i+c#ji&)#49-^3&de$jg)_m(9a2kdl30+c
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popus'
 
 
 # Application definition
