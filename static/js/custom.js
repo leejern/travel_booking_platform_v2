@@ -42,7 +42,9 @@ $(document).ready(function(){
                 console.log("Sending data to server ............");
             }, 
             success: function(response){
-                console.log(response);
+                // console.log(response);
+                $('.total_rooms').text(response.total_selected_items)
+
 
             }
         })
@@ -85,6 +87,7 @@ $(document).on("click",".delete-item",function(){
             button.html("<i class='fas fa-spinner fa-spin'></i>")
         }, 
         success: function(res){
+            $('.total_rooms').text(res.total_selected_item)
             $('.selection-list').html(res.data)
         }
     }) 
