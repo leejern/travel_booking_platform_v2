@@ -39,13 +39,12 @@ $(document).ready(function(){
             }, 
             dataType:"json",
             beforeSend: function(){
-                console.log("Sending data to server ............");
+                button.html("<i class='fas fa-spinner fa-spin'></i> Processing")
             }, 
             success: function(response){
-                // console.log(response);
-                $('.total_rooms').text(response.total_selected_items)
-
-
+                button.html("<i class='fas fa-check'></i> Added")
+                // console.log(response.total_selected_item);
+                $('.room-count').text(response.total_selected_item);
             }
         })
 
@@ -87,8 +86,9 @@ $(document).on("click",".delete-item",function(){
             button.html("<i class='fas fa-spinner fa-spin'></i>")
         }, 
         success: function(res){
-            $('.total_rooms').text(res.total_selected_item)
-            $('.selection-list').html(res.data)
+            console.log(res.total_selected_item);
+            $('.room-count').text(res.total_selected_item);
+            $('.selection-list').html(res.data);
         }
     }) 
 })

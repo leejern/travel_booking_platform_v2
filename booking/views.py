@@ -64,7 +64,7 @@ def add_to_selection(request):
     data = { 
         "data":request.session['selection_data_obj'], 
         "name":"lijan",
-        "total_selected_items":len(request.session['selection_data_obj'])
+        "total_selected_item":len(request.session['selection_data_obj'])
     }
     return JsonResponse(data)
 
@@ -86,13 +86,13 @@ def delete_selection(request):
     checkout=""
     hotel=None
 
-    if 'selection_data_object' in request.session:
+    if 'selection_data_obj' in request.session:
         for h_id,items in request.session['selection_data_obj'].items():
             id= int(items['hotel_id'])
             checkin= items['checkin']
             checkout= items['checkout']
-            adults= int(items['adults']) if not None else 0
-            children= int(items['children']) if not None else 0
+            adults= int(items['adults']) 
+            children= int(items['children']) 
             room_type_= int(items['room_type'])
             room_id= int(items['room_id'])
 
@@ -107,16 +107,17 @@ def delete_selection(request):
             total_days = time_difference.days
             room_count +=1
             days = total_days
-            price = int(room_type.price)
-            # room_name_= room_type.type
-            # room_type=room_name_
+            price = room_type.price
+            
             room_price = price*room_count 
             total = room_price*days
+            
+
     context = render_to_string(
         'hotel/async/selected_room.html',
         {
             "data":request.session['selection_data_obj'],
-            "total_selected_items":len(request.session['selection_data_obj']),
+            "total_selected_item":len(request.session['selection_data_obj']),
             "total":total, 
             "total_days":total_days, 
             "adults":adults, 
@@ -126,5 +127,5 @@ def delete_selection(request):
             "hotel":hotel,
         }
     )
-    print("=======================================================\n=======================",context)
-    return JsonResponse({"data":context, "total_selected_items":len(request.session['selection_data_obj']),}) 
+    #print("=======================================================\n=======================",context)
+    return JsonResponse({"data":context, "total_selected_item":len(request.session['selection_data_obj']),}) 

@@ -48,7 +48,7 @@
       <span class="loader w-[100px] h-[100px] flex relative items-center justify-center"></span>
    </div>
    <!-- Header -->
-   <header>
+   <header> 
       
       <div class="lh-header bg-[#000000b3] absolute w-full z-[16] py-[6px]">
          <div class="flex flex-wrap justify-between items-center mx-auto 2xl:max-w-[1320px] xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px] px-[12px]">
@@ -61,25 +61,35 @@
                </button>
                <div class="flex basis-[auto] grow items-center lg:flex hidden">
                   <ul class="navbar-nav flex w-full relative z-[3] flex-row justify-end">
-                     <li class="ml-[30px] nav-item dropdown">
-                        <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="">
-                           <i class="fa fa-bed"></i><span class="total_rooms">0</span>
-                        </a>
-                     </li>
+                     {% if user.is_authenticated %}
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="{% url "Hotel:selected_rooms" %}">
+                              <i class="fa fa-bed"></i><span class="room-count"> {{request.session.selection_data_obj|length}}</span>
+                              
+                           </a>
+                        </li>
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="{% url "UserAuth:logout" %}">
+                              <i class="fa fa-right-from-bracket"></i>
+                           </a>
+                        </li>
+                     {% else %}
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] relative nav-link dropdown-toggle" href="javascript:void(0)">
+                              Account <i class="ri-arrow-down-s-line ml-[5px]"></i>
+                           </a>
+                           <ul class="dropdown-menu min-w-[150px] text-left opacity-0 invisible bg-[#fff] shadow-[0_0_3px_1px_rgba(0,0,0,0.2)] block z-[9] rounded-t-[0] rounded-b-[10px] mt-[30px] transition-all duration-[0.3s] ease-in-out">
+                              <li>
+                                 <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="{% url "UserAuth:sign-in" %}">Sign in</a>
+                              </li>
+                              <li>
+                                 <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="{% url "UserAuth:sign-up" %}">Sign up</a>
+                              </li>
+                           </ul>
+                        </li>
+                     {% endif %}
                      
-                     <li class="ml-[30px] nav-item dropdown">
-                        <a class="py-[5px] text-[15px] text-[#fff] relative nav-link dropdown-toggle" href="javascript:void(0)">
-                           Room <i class="ri-arrow-down-s-line ml-[5px]"></i>
-                        </a>
-                        <ul class="dropdown-menu min-w-[150px] text-left opacity-0 invisible bg-[#fff] shadow-[0_0_3px_1px_rgba(0,0,0,0.2)] block z-[9] rounded-t-[0] rounded-b-[10px] mt-[30px] transition-all duration-[0.3s] ease-in-out">
-                           <li>
-                              <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="room.html">Room</a>
-                           </li>
-                           <li>
-                              <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="room-details.html">Room-details</a>
-                           </li>
-                        </ul>
-                     </li>
+                     
                      
                      <li class="ml-[30px] nav-item dropdown">
                         <a class="py-[5px] text-[15px] text-[#fff] nav-link relative dropdown-toggle" href="javascript:void(0)">
@@ -118,32 +128,31 @@
       <input type="text" placeholder="Search" class="lh-menu-box h-[45px] w-full px-[10px] m-0 border-0 outline-none rounded-[5px] bg-[#eee]">
       <div class="lh-menu-content">
          <ul>
+            {% if user.is_authenticated %}
+               <li class="dropdown drop-list leading-[28px]">
+                  <a href="{% url "Hotel:selected_rooms" %}" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">
+                     <i class="fa fa-bed"></i><span class="room-count"> {{request.session.selection_data_obj|length}}</span>
+                  </a>
+               </li>
+               <li class="dropdown drop-list leading-[28px]">
+                  <a href="{% url "UserAuth:logout" %}" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">
+                     <i class="fa fa-right-from-bracket"></i>
+                  </a>
+               </li>
+            {% else %}            
             <li class="dropdown drop-list leading-[28px]">
-               <a href="index.html" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">Home</a>
-            </li>
-            <li class="dropdown drop-list leading-[28px]">
-               <a href="#" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">Categories</a>
+               <a href="#" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">Account</a>
                <ul class="sub-menu shadow-none transition-none hidden w-full static visible opacity-100 p-0 mb-0">
                   <li class="relative leading-[28px]">
-                     <a href="gallery.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">gallery 1</a>
+                     <a href="{% url "UserAuth:sign-in" %}" class="block capitalize opacity-80 pl-[20px] hover:text-[#444] border-b border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Sign In</a>
                   </li>
                   <li class="relative leading-[28px]">
-                     <a href="gallery-2.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">gallery 2</a>
+                     <a href="{% url "UserAuth:sign-up" %}" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Sign UP</a>
                   </li>
                </ul>
             </li>
-            <li class="dropdown drop-list leading-[28px]">
-               <a href="#" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">Room</a>
-               <ul class="sub-menu shadow-none transition-none hidden w-full static visible opacity-100 p-0 mb-0">
-                  <li class="relative leading-[28px]">
-                     <a href="room.html" class="block capitalize opacity-80 pl-[20px] hover:text-[#444] border-b border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Room</a>
-                  </li>
-                  <li class="relative leading-[28px]">
-                     <a href="room-details.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Room-details</a>
-                  </li>
-               </ul>
-            </li>
-            <li class="dropdown drop-list leading-[28px]">
+            {% endif %}
+            {% comment %} <li class="dropdown drop-list leading-[28px]">
                <a href="#" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">Pages</a>
                <ul class="sub-menu shadow-none transition-none hidden w-full static visible opacity-100 p-0 mb-0">
                   <li class="relative leading-[28px]">
@@ -188,7 +197,7 @@
             </li>
             <li class="dropdown drop-list leading-[28px]">
                <a href="restaurant.html" class="block capitalize text-[15px] font-normal text-[#444] no-underline border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px]">Restaurant</a>
-            </li>
+            </li> {% endcomment %}
          </ul>
       </div>
    </div>
