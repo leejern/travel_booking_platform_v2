@@ -1,8 +1,12 @@
 import json
 from django.http import HttpResponseBadRequest, JsonResponse
+from django.conf import settings
 from django.shortcuts import *
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from datetime import datetime
+import stripe
+
 
 from .models import *
 # Create your views here.
@@ -208,3 +212,21 @@ def checkout(request,booking_id):
     
 
     return render(request,"hotel/checkout.html",context)
+
+
+@csrf_exempt
+def create_checkout_session(request,booking_id):
+    booking = Booking.objects.get(booking_id=booking_id)
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    checkout_session = stripe.checkout.Session.create(
+        customer_email= booking.email
+        payment_method_types=['card']
+        line_items=[ 
+            {
+                'price_data':{
+                    
+                }
+            }
+        ]
+    )
