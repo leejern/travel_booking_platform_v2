@@ -10,4 +10,11 @@ urlpatterns = [
     path("detail/<slug:slug>/room-type/<slug:rt_slug>",room_type_detail,name="room_type_detail"),
     path("selected_rooms/",selected_rooms,name="selected_rooms"),
     path("checkout/<booking_id>/",checkout,name="checkout"),
+
+
+
+    #payments routes 
+    path("api/create_checkout_session/<booking_id>/",create_checkout_session,name='api_checkout_session'),
+    path('success/<booking_id>/',payment_success, name='success'),
+    path('failed/<booking_id>/',payment_failed, name='failed'),
 ]

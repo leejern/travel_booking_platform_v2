@@ -33,6 +33,17 @@ Payment_status= (
     ("Unpaid","Unpaid"),
     ("Expired","Expired"),
 )
+NOTIFICATION_TYPE = (
+    ("Booking Confirmed","Booking Confirmed"),
+    ("Booking Cancelled","Booking Cancelled"),
+)
+RATING = (
+    (1, "One Star"),
+    (2, "Two Star"),
+    (3, "Three Star"),
+    (4, "Four Star"),
+    (5, "Five Star"),
+)
 
 def generate_random_string(length=8):
     """Generate a random string of uppercase letters and digits excluding certain characters."""
@@ -42,7 +53,7 @@ def generate_random_string(length=8):
 
 
 class Hotel(models.Model):
-    user= models.ForeignKey(User, related_name="Hotel_users",on_delete=models.CASCADE)
+    user= models.ForeignKey(User, related_name="Hotel_users",on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=255)
     description = CKEditor5Field(null=True, blank=True,config_name='extends')
     image = models.FileField(upload_to="hotel_gallery")
@@ -261,3 +272,25 @@ class Coupon(models.Model):
 
     def __str__(self):
         return f"{self.code}"
+    
+
+
+class Notifications(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE,null=True,blank=True)
+    type = models.CharField( max_length=50, choices=NOTIFICATION_TYPE)
+    soon = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=False)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.booking.booking_id}"
+    
+
+class Bookmark(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE,null=True,blank=True)
+    bid = ShortUUIDField(unique=True,length=10,max_length=20,alphabet="abcdefjhijklmnopqrstuvwxyz")
+    date = models.DateField( auto_now_add=False)
+
+    def __str__(self):
+        return f"{self.user.username} bookmarked {self.hotel}"
