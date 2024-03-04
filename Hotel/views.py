@@ -201,6 +201,7 @@ def checkout(request,booking_id):
                 booking.coupons.add(coupon)
                 booking.total -= discount
                 booking.saved += discount
+                booking.payment_status = "Processing"
                 booking.save()
                 coupon.redemptions +=1
 
@@ -259,18 +260,22 @@ def payment_success(request,booking_id):
         booking = Booking.objects.get(booking_id=booking_id, success_id=success_id)
         if booking.total == Decimal(booking_total):
             if booking.payment_status == "Processing":
-                booking.payment_status == 'Paid'
+                booking.payment_status = 'Paid'
                 booking.save()
 
                 noti = Notifications.objects.create(
                     booking=booking,
                     type="Booking Confirmed"
                 )
-                if request.user.is_autheticated:
+                if request.user.is_authenticated:
                     noti.user = request.user,
+                    print("user is ===================", request.user)
                 else: 
                     noti.user = None 
                 noti.save()
+
+                if 'selection_data_obj' in request.session:
+                    del request.session['selection_data_obj']
             else:
                 messages.success(request,"Payment made already, thanks for your Patronage")
         else:

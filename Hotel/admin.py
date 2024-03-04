@@ -44,6 +44,7 @@ admin.site.register(Room)
 admin.site.register(Booking)
 admin.site.register(GuestActivityLog)
 admin.site.register(StaffOnDuty)
+admin.site.register(Notifications)
 admin.site.register(Coupon,CouponAdmin)
 
 

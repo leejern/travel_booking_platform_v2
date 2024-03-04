@@ -280,10 +280,10 @@ class Notifications(models.Model):
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE,null=True,blank=True)
     type = models.CharField( max_length=50, choices=NOTIFICATION_TYPE)
     soon = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=False)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.booking.booking_id}"
+        return f"{self.user} - {self.booking.booking_id}"
     
 
 class Bookmark(models.Model):
@@ -293,4 +293,4 @@ class Bookmark(models.Model):
     date = models.DateField( auto_now_add=False)
 
     def __str__(self):
-        return f"{self.user.username} bookmarked {self.hotel}"
+        return f"{self.user} bookmarked {self.hotel}"
