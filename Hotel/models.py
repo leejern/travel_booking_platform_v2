@@ -7,6 +7,7 @@ from django.utils.html import mark_safe
 from django_ckeditor_5.fields import CKEditor5Field
 from shortuuid.django_fields import ShortUUIDField
 from taggit.managers import TaggableManager
+import datetime
 
 from UserAuth.models import User
 
@@ -86,7 +87,7 @@ class Hotel(models.Model):
     def thumbnail(self):
         return mark_safe("<img src='%s' alt='' width='50' height='50' border-radius='6px'style='object-fit' />" % (self.image.url))
     
-    
+
 
 
 class HotelGallery(models.Model):
@@ -172,22 +173,29 @@ class Room(models.Model):
     def number_of_beds(self):
         return self.room_type.number_of_beds
     
-class Booking(models.Model):   
-    
+
+class Booking(models.Model):
+
+    booking_date = models.DateTimeField(auto_now_add=True, editable=True,blank=True,null=True)
+
+
+    booking_id = ShortUUIDField(length=10, max_length=10, alphabet='0123456789ABCDEFGHJKLMNPQRST', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    payment_status = models.CharField(max_length=100,choices=Payment_status)
+    payment_status = models.CharField(max_length=100, choices=Payment_status)
 
     fullname = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    phone = models.CharField(max_length=100,null=True, blank=True)
+    phone = models.CharField(max_length=100, null=True, blank=True)
 
-    hotel = models.ForeignKey(Hotel, on_delete=models.SET_NULL,null=True, blank=True)
-    room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL,null=True, blank=True)
+    hotel = models.ForeignKey(Hotel, on_delete=models.SET_NULL, null=True, blank=True)
+    room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL, null=True, blank=True)
     room = models.ManyToManyField(Room)
-    before_discount = models.DecimalField(max_digits=12,decimal_places=2,default=0.00)
-    total = models.DecimalField(max_digits=12,decimal_places=2,default=0.00)
-    saved = models.DecimalField(max_digits=12,decimal_places=2,default=0.00)
-    coupons = models.ManyToManyField("Hotel.Coupon",blank=True)
+    
+    before_discount = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    saved = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    
+    coupons = models.ManyToManyField("Hotel.Coupon", blank=True)
     checkin_date = models.DateField()
     checkout_date = models.DateField()
 
@@ -197,41 +205,23 @@ class Booking(models.Model):
 
     check_in = models.BooleanField(default=False)
     check_out = models.BooleanField(default=False)
-     
+
     is_availabe = models.BooleanField(default=False)
 
     check_in_tracker = models.BooleanField(default=False)
     check_out_tracker = models.BooleanField(default=False)
 
-    booking_id = models.CharField(max_length=10, unique=True, editable=True, default=generate_random_string)
-    success_id = ShortUUIDField(length=10,max_length=10,alphabet='abcdefghijklmnopqrstuvwxyz',null=True,blank=True)
-    stripe_payment_intent = models.CharField(max_length=100,blank=True,null=True)
-    payment_id = models.CharField(max_length=100,blank=True,null=True)
-
-    def generate_random_string(length=8):
-        """Generate a random string of uppercase letters and digits excluding certain characters."""
-        exclude_chars = ['0', 'o', '1', 'i']
-        valid_chars = [char for char in string.ascii_uppercase + string.digits if char not in exclude_chars]
-        return ''.join(random.choices(valid_chars, k=length))
-
-
-    def save(self, *args, **kwargs):
-        # Generate the booking ID if it doesn't exist
-        if not self.booking_id:
-            self.booking_id = generate_random_string(8)
-
-        # Ensure the generated booking_id is unique
-        while Booking.objects.filter(booking_id=self.booking_id).exists():
-            self.booking_id = generate_random_string(8)
-
-        super().save(*args, **kwargs)
+    # booking_date = models.DateTimeField(auto_now_add=True)
+    success_id = ShortUUIDField(length=10, max_length=10, alphabet='abcdefghijklmnopqrstuvwxyz', null=True, blank=True)
+    stripe_payment_intent = models.CharField(max_length=100, blank=True, null=True)
+    payment_id = models.CharField(max_length=100, blank=True, null=True)
+    # payment_LIJSNNS = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return str(self.booking_id)
-    
 
     def rooms(self):
-        return self.room.all.count()
+        return self.room.count()
 
 
 
@@ -273,7 +263,6 @@ class Coupon(models.Model):
     def __str__(self):
         return f"{self.code}"
     
-
 
 class Notifications(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)

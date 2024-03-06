@@ -3,10 +3,11 @@ import json
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.conf import settings
 from django.shortcuts import *
+from UserAuth.models import User 
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
-from datetime import datetime
+from datetime import datetime as dt
 import stripe
 
 
@@ -91,8 +92,8 @@ def selected_rooms(request):
                 room_type = RoomType.objects.get(id=room_type_)
 
             date_format = "%Y-%m-%d"
-            checkin_date = datetime.strptime(checkin, date_format)
-            checkout_date = datetime.strptime(checkout, date_format)
+            checkin_date = dt.strptime(checkin, date_format)
+            checkout_date = dt.strptime(checkout, date_format)
             time_difference = checkout_date - checkin_date
 
             total_days = time_difference.days
@@ -113,6 +114,7 @@ def selected_rooms(request):
                 fullname=firstname +" "+lastname,
                 email=email,
                 phone=phone,  
+                payment_status = "Processing",
 
                 user = request.user or None           
             )
@@ -204,11 +206,13 @@ def checkout(request,booking_id):
                 booking.payment_status = "Processing"
                 booking.save()
                 coupon.redemptions +=1
+                coupon.save()
 
                 messages.success(request, "Coupon Activated!")
                 return redirect('Hotel:checkout',booking.booking_id)
         except: 
             messages.error(request,"Coupon Does Not Exist")
+    
     context = {
         "booking":booking, 
         "stripe_publishable_key": settings.STRIPE_PUBLIC_KEY,
@@ -251,6 +255,12 @@ def create_checkout_session(request,booking_id):
 
 
 def payment_success(request,booking_id):
+    user=None
+    if request.user.is_authenticated:
+        print("Authenticated user: ", request.user)
+        user = request.user
+
+
     success_id = request.GET.get('success_id')
     booking_total = request.GET.get('booking_total')
     if success_id and booking_total:
@@ -263,16 +273,14 @@ def payment_success(request,booking_id):
                 booking.payment_status = 'Paid'
                 booking.save()
 
+                print("===========================================booking saved========================================")
                 noti = Notifications.objects.create(
-                    booking=booking,
-                    type="Booking Confirmed"
+                    booking=booking, 
+                    type="Booking Confirmed",
+                    user=user
                 )
-                if request.user.is_authenticated:
-                    noti.user = request.user,
-                    print("user is ===================", request.user)
-                else: 
-                    noti.user = None 
                 noti.save()
+                print("===========================================Notification saved========================================")
 
                 if 'selection_data_obj' in request.session:
                     del request.session['selection_data_obj']
@@ -280,9 +288,7 @@ def payment_success(request,booking_id):
                 messages.success(request,"Payment made already, thanks for your Patronage")
         else:
             messages.error(request,"Payment manupilation detected!")
-
-
-    return render(request,'hotel/payment_success.html')
+    return render(request,'hotel/payment_success.html',{"booking":booking})
 #/success/WX3JWN62/?success=ervttjjbjz&payer_id=9BC70445HA750121P&status=COMPLETED&booking_total=9600
 
 def payment_failed(request):
