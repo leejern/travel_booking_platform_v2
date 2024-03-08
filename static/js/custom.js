@@ -77,7 +77,7 @@ $(document).on("click",".delete-item",function(){
     let id = $(this).attr("data-item")
     let button = $(this) 
     $.ajax({
-        url:'/booking/delete_selection', 
+        url:'/booking/delete_selection/', 
         data:{ 
             "id":id
         }, 
@@ -92,3 +92,17 @@ $(document).on("click",".delete-item",function(){
         }
     }) 
 })
+
+function makeAjaxCall(){
+    $.ajax({
+        url:"/update_room_status/",
+        type:"GET",
+        success: function (data) {
+            console.log("Checked Rooms");            
+        }, 
+        
+    })
+}
+
+setInterval(makeAjaxCall,3000)
+//setInterval(makeAjaxCall,86400)

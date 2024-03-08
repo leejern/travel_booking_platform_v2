@@ -287,6 +287,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         let booking_total = {{booking.total}};
+        let booking_usd = {{total_usd}}
         let booking_id = "{{booking.booking_id}}";
         let success_id = "{{booking.success_id}}";
         console.log(success_id);
@@ -295,7 +296,7 @@
                 return actions.order.create({
                     purchase_units:[{
                         amount:{
-                            value:booking_total,
+                            value:booking_usd,
                         }
                     }]
                 })

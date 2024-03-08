@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime as dt
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect, JsonResponse
@@ -100,8 +100,8 @@ def delete_selection(request):
             room_type = RoomType.objects.get(id=room_type_)
 
             date_format = "%Y-%m-%d"
-            checkin_date = datetime.strptime(checkin, date_format)
-            checkout_date = datetime.strptime(checkout, date_format)
+            checkin_date = dt.strptime(checkin, date_format)
+            checkout_date = dt.strptime(checkout, date_format)
             time_difference = checkout_date - checkin_date
 
             total_days = time_difference.days
@@ -127,5 +127,5 @@ def delete_selection(request):
             "hotel":hotel,
         }
     )
-    #print("=======================================================\n=======================",context)
+    # print("=======================================================\n=======================",context)
     return JsonResponse({"data":context, "total_selected_item":len(request.session['selection_data_obj']),}) 

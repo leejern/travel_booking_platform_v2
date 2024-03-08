@@ -206,7 +206,7 @@ class Booking(models.Model):
     check_in = models.BooleanField(default=False)
     check_out = models.BooleanField(default=False)
 
-    is_availabe = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
 
     check_in_tracker = models.BooleanField(default=False)
     check_out_tracker = models.BooleanField(default=False)
