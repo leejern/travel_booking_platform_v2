@@ -37,6 +37,9 @@ urlpatterns = [
     # booking ursl
     path('booking/',include("booking.urls")),
 
+    # booking ursl
+    path('dashboard/',include("User_dashboard.urls")),
+
 
     # ckeditor ursl
     path('ckeditor5/',include("django_ckeditor_5.urls")),

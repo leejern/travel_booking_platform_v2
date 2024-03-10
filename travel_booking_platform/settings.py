@@ -162,9 +162,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "UserAuth.User"
 
 # LOGIN_REDIRECT_URL ='account'
-# LOGIN_URL='login'
+LOGIN_URL='UserAuth:sign-in'
 # LOGOUT_URL ='logout'
-# LOGOUT_REDIRECT_URL ='home'
+LOGOUT_REDIRECT_URL ='UserAuth:sign-in'
 # if DEBUG:
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # else:
