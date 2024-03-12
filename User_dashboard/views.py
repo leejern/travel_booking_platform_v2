@@ -8,7 +8,7 @@ from Hotel.models import *
 @login_required
 def dasboard(request):
     booking = Booking.objects.filter(user=request.user,payment_status="Paid")
-    total_spent = Booking.objects.filter(user=request.user,payment_status="Paid").aaggregate(amount=models.Sum('total'))
+    total_spent = Booking.objects.filter(user=request.user,payment_status="Paid").aggregate(amount=models.Sum('total'))
 
     context = {
         "bookings":booking,

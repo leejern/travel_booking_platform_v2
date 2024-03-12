@@ -1,94 +1,128 @@
-{% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Sidebar 07</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{% static "css/dashboard.css" %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Dashboard</a>
+  </nav>
 
-  <div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar" class="active">
-      <h1><a href="index.html" class="logo">M.</a></h1>
-      <ul class="list-unstyled components mb-5">
-        <li class="active">
-          <a href="#"><span class="fa fa-home"></span> Home</a>
-        </li>
-        <li>
-          <a href="#"><span class="fa fa-user"></span> About</a>
-        </li>
-        <li>
-          <a href="#"><span class="fa fa-sticky-note"></span> Blog</a>
-        </li>
-        <li>
-          <a href="#"><span class="fa fa-cogs"></span> Services</a>
-        </li>
-        <li>
-          <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
-        </li>
-      </ul>
-
-      <div class="footer">
-        <p>
-          Copyright &copy;<script>
-            document.write(new Date().getFullYear());
-          </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-        </p>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">All Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Wallet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Bookmark</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Change Password</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-
-    <!-- Page Content  -->
-    <div id="content" class="p-4 p-md-5">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-
-          <button type="button" id="sidebarCollapse" class="btn btn-primary">
-            <i class="fa fa-bars"></i>
-            <span class="sr-only">Toggle Menu</span>
-          </button>
-          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Portfolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
-            </ul>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card bg-primary text-white">
+              <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-check"></i> Total Paid Bookings</h5>
+                <p class="card-text">3</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-info text-white">
+              <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-dollar-sign"></i> Total Spent</h5>
+                <p class="card-text">$1596</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-warning text-white">
+              <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-wallet"></i> Wallet Balance</h5>
+                <p class="card-text">$25.00</p>
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
-
-      <h2 class="mb-4">Sidebar #07</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Booking</h5>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>Hotel Name</th>
+                      <th>Total Rooms</th>
+                      <th>Booking Date</th>
+                      <th>Payment Status</th>
+                      <th>View Booking</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Premium Hotel</td>
+                      <td>23</td>
+                      <td>20-20-20</td>
+                      <td>NOT PAID YET</td>
+                      <td><a href="#" class="btn btn-primary">View</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">All Booking Invoices</h5>
+                <div class="card bg-secondary">
+                  <div class="card-body">
+                    <h6 class="card-title">Premium Hotel <span class="badge badge-danger">Not Paid Yet</span></h6>
+                    <p class="card-text">Order Number: 32908423423 Date: 20-20-20</p>
+                    <a href="#" class="btn btn-primary">Invoice</a>
+                    <a href="#" class="btn btn-success">Pay Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="{% static "js/dashboard.js" %}"></script>
+  <script src="https://kit.fontawesome.com/yourcode.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
-
 </html>
