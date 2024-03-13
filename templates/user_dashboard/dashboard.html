@@ -1,1 +1,26 @@
-{% extends "user_dashboard/base.html" %}
+
+<table class="table table-striped table-hover table-responsive-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">S/N</th>
+        <th scope="col">Hotel Name</th>
+        <th scope="col">Total Rooms</th>
+        <th scope="col">Booking Date</th>
+        <th scope="col">Payment Status</th>
+        <th scope="col">View Booking</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{booking.hotel}}</td>
+            <td>{{booking.room.all.count}}</td>
+            <td>{{booking.booking_date}}</td>
+            <td><span class="badge badge-secondary">{{booking.payment_status}}</span></td>
+            <td><a href="#" class="btn btn-secondary"><i class="fas fa-fw fa-eye"></i>View</a></td>
+        </tr>
+      {% endfor %}
+     
+    </tbody>
+  </table>
