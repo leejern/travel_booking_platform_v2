@@ -1,26 +1,37 @@
+{% extends "user_dashboard/base.html" %}
+{% load static %}
 
+{% block body %}
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Summaries</h1>
+</div>
+
+<!-- Content Row -->
+{% include "user_dashboard/toprow.html" %}
 <table class="table table-striped table-hover table-responsive-sm">
-    <thead class="thead-dark">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">S/N</th>
+      <th scope="col">Hotel Name</th>
+      <th scope="col">Total Rooms</th>
+      <th scope="col">Booking Date</th>
+      <th scope="col">Payment Status</th>
+      <th scope="col">View Booking</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in bookings %}
       <tr>
-        <th scope="col">S/N</th>
-        <th scope="col">Hotel Name</th>
-        <th scope="col">Total Rooms</th>
-        <th scope="col">Booking Date</th>
-        <th scope="col">Payment Status</th>
-        <th scope="col">View Booking</th>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{booking.hotel}}</td>
+          <td>{{booking.room.all.count}}</td>
+          <td>{{booking.booking_date}}</td>
+          <td><span class="badge badge-success">{{booking.payment_status}}</span></td>
+          <td><a href="{% url "user_dashboard:booking_details" booking.booking_id %}" class="btn btn-info"><i class="fas fa-fw fa-eye"></i>View</a></td>
       </tr>
-    </thead>
-    <tbody>
-      {% for booking in bookings %}
-        <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td>{{booking.hotel}}</td>
-            <td>{{booking.room.all.count}}</td>
-            <td>{{booking.booking_date}}</td>
-            <td><span class="badge badge-secondary">{{booking.payment_status}}</span></td>
-            <td><a href="#" class="btn btn-secondary"><i class="fas fa-fw fa-eye"></i>View</a></td>
-        </tr>
-      {% endfor %}
-     
-    </tbody>
-  </table>
+    {% endfor %}
+   
+  </tbody>
+</table>
+{% endblock body %} 

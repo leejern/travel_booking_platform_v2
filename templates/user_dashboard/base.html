@@ -45,16 +45,11 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Summaries</h1>
-                    </div>
+                    
 
                     <!-- Content Row -->
-                    {% include "user_dashboard/toprow.html" %}
-
-                    <!-- Content Row -->
-                    {% include "user_dashboard/dashboard.html" %}
+                    {% block body %}{% endblock body %}
+                    {% comment %} {% include "user_dashboard/dashboard.html" %} {% endcomment %}
                     {% comment %} <div class="row">
 
                         <!-- Area Chart -->

@@ -1,0 +1,37 @@
+{% extends "user_dashboard/base.html" %}
+{% load static %}
+
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">All bookings</h1>
+       <!-- DataTales Example -->
+    {% for booking in bookings %}
+    <div class="card shadow mb-4 ">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Booking ID: {{ booking.booking_id }}</h6>
+            <a href="{% url "user_dashboard:booking_details" booking.booking_id %}" class="btn btn-info ml-auto">
+                <i class="fas fa-fw fa-eye"></i>View
+            </a>
+        </div>
+        
+        <div class="card-body ">
+            <h3>{{booking.fullname | title}} 
+                <span class="badge badge-success text-small"><small>{{booking.payment_status}}</small></span>
+            </h3>
+            <p class="fs-6">Hotel Name: <span class="text-dark">{{booking.hotel.name | title  }}</span></p>
+            
+            <p>Checkin Date: <span class="text-dark">{{booking.checkin_date }}</span></p>
+            <p>checkout Date: <span class="text-dark">{{booking.checkout_date }}</span></p>
+                
+            <p>Total: <span class="text-dark">Kshs.{{booking.total }}</span></p>
+           
+        </div>
+    </div> 
+    {% endfor %}
+
+</div>
+
+{% endblock body %}

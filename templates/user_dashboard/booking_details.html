@@ -1,0 +1,63 @@
+{% extends "user_dashboard/base.html" %}
+{% load static %}
+
+{% block body %}
+<!-- Content Row -->
+<div class="row">
+
+    <div class="col-xl-8 col-lg-7">
+
+        <!-- Area Chart -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Booking ID: {{booking.booking_id}}</h6>
+            </div>
+            <div class="card-body">
+                <h3>{{booking.fullname | title}} 
+                    <span class="badge badge-success text-small"><small>{{booking.payment_status}}</small></span>
+                </h3>
+                <p>Hotel Name: <span class="text-dark">{{booking.hotel.name | title  }}</span></p>
+                <p>Hotel Address: <span class="text-dark">{{booking.hotel.address }}</span></p>
+                <p>Hotel Email: <span class="text-dark">{{booking.hotel.email}}</span></p>
+                <p>Hotel Phone: <span class="text-dark">{{booking.hotel.mobile }}</span></p>
+                <hr>
+                <p>Checkin Date: <span class="text-dark">{{booking.checkin_date }}</span></p>
+                <p>checkout Date: <span class="text-dark">{{booking.checkout_date }}</span></p>
+                <p>Total Days: <span class="text-dark">{{booking.total_days }} Days</span></p>
+                <p>Adults: <span class="text-dark">{{booking.num_adults }} adults</span></p>
+                <p>Children: <span class="text-dark">{{booking.num_children }} children</span></p>
+                <hr>
+                <p>Full Name: <span class="text-dark">{{booking.fullname }}</span></p>
+                <p>Email: <span class="text-dark">{{booking.email}}</span></p>
+                <p>Phone Number: <span class="text-dark">{{booking.phone }}</span></p>
+                <hr>
+                <p>Total: <span class="text-dark">{{booking.total }}</span></p>
+                <hr>
+                <p>Booking Date: <span class="text-dark">{{booking.booking_date}}</span></p>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+    <!-- Donut Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Booked Rooms ({{booking.room.all.count}}) </h6>
+            </div>
+            <!-- Card Body -->
+            {% for r in booking.room.all %}
+            <div class="card-body">
+                <h6>Room Type: {{r.room_type.type | title}}</h6>
+                <p>Room Number: {{r.room_number }}</p>
+                <p>Room price: {{r.room_type.price }}</p>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

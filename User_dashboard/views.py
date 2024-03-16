@@ -15,4 +15,23 @@ def dasboard(request):
         "total_spent":total_spent
     }
 
-    return render(request,"user_dashboard/base.html",context)
+    return render(request,"user_dashboard/dashboard.html",context)
+
+
+@login_required 
+def bookings(request):
+    bookings = Booking.objects.filter(user=request.user,payment_status="Paid")
+    context = {
+        'bookings':bookings
+    }
+    return render(request,"user_dashboard/bookings.html",context) 
+
+
+@login_required 
+def booking_details(request,booking_id):
+    booking = Booking.objects.get(booking_id=booking_id,user=request.user,payment_status="Paid")
+    context = {
+        'booking':booking 
+    }
+    return render(request,"user_dashboard/booking_details.html",context)
+    
