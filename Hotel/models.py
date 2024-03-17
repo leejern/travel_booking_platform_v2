@@ -268,7 +268,7 @@ class Notifications(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE,null=True,blank=True)
     type = models.CharField( max_length=50, choices=NOTIFICATION_TYPE)
-    soon = models.BooleanField(default=False)
+    seen = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

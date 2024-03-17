@@ -50,21 +50,7 @@
     
         <div class="flex flex-wrap w-full mb-[-24px]">
             <div class="lg:w-8/12 w-full px-[12px] mb-[24px] check-dash" data-aos="fade-up" data-aos-duration="2000">
-                {% if messages %}
-                    <ul class="items-center">
-                        {% for message in messages %}
-                            {% if message.tags == 'success' %}
-                                <li class="bg-green-400 text-white px-4 py-2 rounded-lg mb-2">
-                            {% elif message.tags == 'warning' %}
-                                <li class="bg-yellow-500 text-white px-4 py-2 rounded-lg mb-2">
-                            {% elif message.tags == 'error' %}
-                                <li class="bg-rose-500 text-white px-4 py-2 rounded-lg mb-2">
-                            {% endif %}
-                                {{ message }}
-                            </li>
-                        {% endfor %}
-                    </ul>
-            {% endif %}
+                
                 <div class="lh-checkout">
                     <div class="lh-checkout-content">
                         <div class="lh-checkout-inner mb-[-24px]">

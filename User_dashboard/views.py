@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db import models
+from django.contrib import messages
 from Hotel.models import *
 
 # Create your views here.
@@ -35,3 +36,22 @@ def booking_details(request,booking_id):
     }
     return render(request,"user_dashboard/booking_details.html",context)
     
+
+@login_required 
+def notifications(request):
+    notifications = Notifications.objects.filter(user= request.user,seen=False)
+
+    context = {
+        'notifications':notifications 
+    }
+    return render(request,"user_dashboard/notifications.html",context)
+
+
+@login_required
+def mark_as_read(request,id):
+    noti = Notifications.objects.get(id=id)
+    noti.seen = True 
+    noti.save() 
+    messages.success(request, "Notification marked as read!")
+
+    return redirect("user_dashboard:notifications")

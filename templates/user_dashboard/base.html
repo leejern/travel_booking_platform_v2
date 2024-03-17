@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Dashboard | {% block title %}{% endblock title %}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static "vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet" type="text/css">
@@ -24,6 +24,7 @@
 </head>
 
 <body id="page-top">
+    
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -169,11 +170,12 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{% url "UserAuth:logout" %}">Logout</a>
                 </div>
             </div>
         </div>
     </div>
+    {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> {% endcomment %}
 
     <!-- Bootstrap core JavaScript-->
     <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
@@ -184,13 +186,26 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static "js/sb-admin-2.min.js" %}"></script>
-
+    
+    {% comment %} <script src="{% static "js/sweetalert.js" %}"></script> {% endcomment %}
+    
     <!-- Page level plugins -->
     <script src="{% static "vendor/chart.js/Chart.min.js" %}"></script>
-
+    
     <!-- Page level custom scripts -->
     <script src="{% static "js/demo/chart-area-demo.js" %}"></script>
     <script src="{% static "js/demo/chart-pie-demo.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        {% for message in messages %}
+        Swal.fire({ 
+            icon: '{{message.tags}}', 
+            title: '{{message}}', 
+            text: '{{message.tags}}',
+            timer: 1500
+        })
+        {% endfor %}
+    </script>
 
 </body>
 

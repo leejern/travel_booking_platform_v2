@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, JsonResponse
 from Hotel.models import *
 from django.template.loader import render_to_string
+from django.contrib import messages
 
 # Create your views here.
 
@@ -20,13 +21,7 @@ def check_room_availabilty(request):
         hotel = Hotel.objects.get(id=id)
         room_type = RoomType.objects.get(hotel=hotel,slug=roomtype)
         
-        print("id =======",id)
-        print("checkin =======",checkin)
-        print("checkout =======",checkout)
-        print("adults =======",adults)
-        print("children =======",children)
-        print("room_type =======",room_type)
-
+       
         url = reverse("Hotel:room_type_detail", args=[hotel.slug, room_type.slug])
         url_with_params = f"{url}?hotel-id={id}&checkin={checkin}&checkout={checkout}&adults={adults}&children={children}&room_type={room_type}"
         return HttpResponseRedirect(url_with_params)
@@ -66,6 +61,7 @@ def add_to_selection(request):
         "name":"lijan",
         "total_selected_item":len(request.session['selection_data_obj'])
     }
+    messages.success(request, "Added to cart")
     return JsonResponse(data)
 
 
