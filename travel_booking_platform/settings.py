@@ -37,6 +37,7 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popus'
 # Application definition
 
 INSTALLED_APPS = [    
+    
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
