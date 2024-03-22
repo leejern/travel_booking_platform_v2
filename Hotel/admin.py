@@ -37,14 +37,18 @@ class RoomTypeAdmin(admin.ModelAdmin):
 
 class CouponAdmin(admin.ModelAdmin):
     list_display = ['code','active','type','discount','valid_from','valid_to','redemptions']
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ['booking_id', 'hotel', 'room_type', 'booking_date', 'checkin_date', 'checkout_date']
+class RoomModelAdmin(admin.ModelAdmin):
+    list_display = ['room_type','room_number','is_available']
 
 admin.site.register(Hotel,HotelAdmin)
 admin.site.register(HotelGallery)
 admin.site.register(HotelFeatures)
 admin.site.register(HotelFaqs)
 admin.site.register(RoomType,RoomTypeAdmin)
-admin.site.register(Room)
-admin.site.register(Booking)
+admin.site.register(Room,RoomModelAdmin)
+admin.site.register(Booking,BookingAdmin)
 admin.site.register(GuestActivityLog)
 admin.site.register(StaffOnDuty)
 admin.site.register(Notifications)
