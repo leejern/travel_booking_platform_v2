@@ -77,43 +77,50 @@
                         <a href="/"><img src="{% static 'img/kalahari_travels.png' %}" alt=""></a>
                      </div>
                   </div>
+                  {% if request.user.is_authenticated %}
                   <div class="col-xl-8 col-lg-8">
                      <!-- main-menu -->
                      <div class="main-menu f-right d-none d-lg-block">
                         <nav>
                            <ul id="navigation">
-                              <li><a href="index.html">Home</a></li>
-                              <li><a href="about.html">About</a></li>
-                              <li><a href="services.html">Service</a></li>
-                              <li><a href="blog.html">Account</a>
+                              <li><a href="{% url "Hotel:selected_rooms" %}">Rooms <span class="room-count"> {{request.session.selection_data_obj|length}}</span></a></li>
+                              <li><a href="{% url "user_dashboard:dashboard" %}"> <i class="fa fa-tachometer" aria-hidden="true"></i><span class="room-count"> Dashboard</a></span></li>                            
+                              
+                           </ul> 
+                        </nav>
+                     </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-2">  
+                                        
+                     <div class="header-btn">
+                        <a href="{% url "user_dashboard:dashboard" %}" class="btn btn1 d-none d-lg-block "> <i class="fa fa-user-circle" aria-hidden="true"></i> {{request.user}}</a>
+                     </div>
+                  </div>
+                  {% else %}
+                  <div class="col-xl-8 col-lg-8">
+                     <!-- main-menu -->
+                     <div class="main-menu f-right d-none d-lg-block">
+                        <nav>
+                           <ul id="navigation">               
+                              <li><a href="{% url "Hotel:selected_rooms" %}">Rooms <span class="room-count"> {{request.session.selection_data_obj|length}}</span></a></li>               
+                              <li><a href="#">Account</a>
                                  <ul class="submenu">
                                     <li><a href="{% url "UserAuth:sign-in" %}">Sign In</a></li>
                                     <li><a href="{% url "UserAuth:sign-up" %}">Sign Up</a></li>
                                  </ul>
                               </li>
-                              <li><a href="#">Pages</a>
-                                 <ul class="submenu">
-                                    <li><a href="rooms.html">Rooms</a>
-                                    <li><a href="elements.html">Element</a></li>
-                                 </ul>
-                              </li>
-                              <li><a href="contact.html">Contact</a></li>
+                              
                            </ul>
                         </nav>
                      </div>
                   </div>
-                  <div class="col-xl-2 col-lg-2">
-                     <!-- header-btn -->
-                     {% if request.user.is_authenticated %}
+                  <div class="col-xl-2 col-lg-2">                     
                      <div class="header-btn">
-                        <a href="#" class="btn btn1 d-none d-lg-block "> <i class="fa fa-user-circle" aria-hidden="true"></i> {{request.user}}</a>
+                        <a href="{% url "UserAuth:sign-in" %}" class="btn btn1 d-none d-lg-block "> <i class="fa fa-user-circle" aria-hidden="true"></i> Login</a>
                      </div>
-                     {% else %}
-                     <div class="header-btn">
-                        <a href="{% url "UserAuth:sign-in" %}" class="btn btn1 d-none d-lg-block ">Login</a>
-                     </div>
-                     {% endif %}
                   </div>
+                  
+                  {% endif %}
                   <!-- Mobile Menu -->
                   <div class="col-12">
                      <div class="mobile_menu d-block d-lg-none"></div>

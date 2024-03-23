@@ -26,20 +26,21 @@
 
                            <div class="form-outline mb-2 row d-fluid">
                               {{form.email}}
-                              {% if field.email.errors %}
+                              {% if form.email.errors %}
                               <ul class="small">
-                                 {% for error in errors  %}
-                                 <li class="small text-danger">{{error.message}}</li>
+                                 {% for error in form.email.errors %}
+                                 <li class="small text-danger">{{ error }}</li>
                                  {% endfor %}
                               </ul>
                               {% endif %}
+
                            </div>
                            <div class="form-outline mb-2 row d-fluid">
                               {{form.username}}
                               {% if field.username.errors %}
                               <ul class="small">
-                                 {% for error in errors  %}
-                                 <li class="small text-danger">{{error.message}}</li>
+                                 {% for error in form.username.errors %}
+                                 <li class="small text-danger">{{ error }}</li>
                                  {% endfor %}
                               </ul>
                               {% endif %}
@@ -53,8 +54,8 @@
                               {{form.password1}}
                               {% if form.password1.errors %}
                               <ul class="small">
-                                 {% for error in errors  %}
-                                 <li class="small text-danger">{{error.message}}</li>
+                                 {% for error in form.password1.errors %}
+                                 <li class="small text-danger">{{ error }}</li>
                                  {% endfor %}
                               </ul>
                               {% endif %}
@@ -63,9 +64,9 @@
                            <div class="form-outline mb-2 row d-fluid">
                               {{form.password2}}
                               {% if form.password2.errors %}
-                              <ul class="small-list">
-                                 {% for error in errors  %}
-                                 <li class="small text-danger">{{error}}</li>
+                              <ul class="small">
+                                 {% for error in form.password2.errors %}
+                                 <li class="small text-danger">{{ error }}</li>
                                  {% endfor %}
                               </ul>
                               {% endif %}

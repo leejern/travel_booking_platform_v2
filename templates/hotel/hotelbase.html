@@ -53,8 +53,8 @@
       <div class="lh-header bg-[#000000b3] absolute w-full z-[16] py-[6px]">
          <div class="flex flex-wrap justify-between items-center mx-auto 2xl:max-w-[1320px] xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px] px-[12px]">
             <nav class="flex flex-nowrap w-full py-[3px]">
-               <a class="navbar-brand py-[5px]" href="index.html">
-                  <img src="assets/img/logo/logo.png" alt="logo" class="xl:w-[180px] w-[160px] relative z-[2]">
+               <a class="navbar-brand py-[5px]" href="/">
+                  <img src="{% static "img/kalahari_travels.png" %}" alt="logo" class="xl:w-[180px] w-[160px] relative z-[2]">
                </a>
                <button class="navbar-toggler shadow-none flex basis-[auto] grow items-center text-[24px] text-[#fff] lg:hidden flex justify-end" type="button" data-bs-toggle="collapse" data-bs-target="#" aria-label="Toggle navigation">
                   <i class="ri-menu-2-line"></i>
@@ -79,10 +79,21 @@
                               
                            </ul>
                         </li>
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="{% url "user_dashboard:dashboard" %}">
+                              <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+                           </a>
+                        </li>
                         
                      {% else %}
                         <li class="ml-[30px] nav-item dropdown">
-                           <a class="py-[5px] text-[15px] text-[#fff] relative nav-link dropdown-toggle" href="javascript:void(0)">
+                           <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="{% url "Hotel:selected_rooms" %}">
+                              <i class="fa fa-bed"></i><span class="room-count"> {{request.session.selection_data_obj|length}}</span>
+                              
+                           </a>
+                        </li>
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] relative nav-link dropdown-toggle" href="{% url "user_dashboard:dashboard" %}">
                               Account <i class="ri-arrow-down-s-line ml-[5px]"></i>
                            </a>
                            <ul class="dropdown-menu min-w-[150px] text-left opacity-0 invisible bg-[#fff] shadow-[0_0_3px_1px_rgba(0,0,0,0.2)] block z-[9] rounded-t-[0] rounded-b-[10px] mt-[30px] transition-all duration-[0.3s] ease-in-out">
@@ -98,7 +109,7 @@
                      
                      
                      
-                     <li class="ml-[30px] nav-item dropdown">
+                     {% comment %} <li class="ml-[30px] nav-item dropdown">
                         <a class="py-[5px] text-[15px] text-[#fff] nav-link relative dropdown-toggle" href="javascript:void(0)">
                            Blog <i class="ri-arrow-down-s-line ml-[5px]"></i>
                         </a>
@@ -115,7 +126,7 @@
                         <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="restaurant.html">
                            Restaurant
                         </a>
-                     </li>
+                     </li> {% endcomment %}
                   </ul>
                </div>
             </nav>

@@ -158,7 +158,7 @@ class RoomType(models.Model):
 class Room(models.Model):
     hotel = models.ForeignKey(Hotel, related_name='rooms',on_delete=models.CASCADE)
     room_type = models.ForeignKey(RoomType, related_name='room_types',on_delete=models.CASCADE)
-    room_number = models.CharField(max_length=30)
+    room_number = models.CharField(max_length=30,unique=True)
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
