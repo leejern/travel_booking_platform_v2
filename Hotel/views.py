@@ -71,6 +71,9 @@ def selected_rooms(request):
     children=0
     checkin=""
     checkout=""
+    user=None 
+    if request.user.is_authenticated:
+        user= request.user
     # room_type=None
 
     if "selection_data_obj" in request.session:
@@ -86,7 +89,7 @@ def selected_rooms(request):
                 room_type_= int(items['room_type'])
                 room_id= int(items['room_id'])\
                 
-                user = request.user
+                user = user
 
                 hotel = Hotel.objects.get(id=id)
                 room = Room.objects.get(id=room_id)
@@ -117,7 +120,7 @@ def selected_rooms(request):
                 phone=phone,  
                 payment_status = "Processing",
 
-                user = request.user or None           
+                user = user          
             )
             for h_id,items in request.session['selection_data_obj'].items():
                 room_id = int(items['room_id'])
