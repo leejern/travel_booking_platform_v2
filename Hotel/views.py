@@ -281,6 +281,7 @@ def payment_success(request,booking_id):
         if booking.total == Decimal(booking_total):
             if booking.payment_status == "Processing":
                 booking.payment_status = 'Paid'
+                booking.is_active = True
                 booking.save()
 
                 print("===========================================booking saved========================================")
