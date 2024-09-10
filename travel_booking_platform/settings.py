@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-y)nh8u!wv1uw=(x_i+c#ji&)#49-^3&de$jg)_m(9a2kdl30+c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popus' 
 
 
@@ -152,8 +152,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static',)]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STRIPE_SECRET_KEY=env("STRIPE_SECRET_KEY")
-STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY=""
+STRIPE_PUBLIC_KEY = ""
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
