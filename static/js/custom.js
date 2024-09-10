@@ -104,5 +104,5 @@ function makeAjaxCall(){
     })
 }
 
-setInterval(makeAjaxCall,3000)
+// setInterval(makeAjaxCall,3000)
 //setInterval(makeAjaxCall,86400)
