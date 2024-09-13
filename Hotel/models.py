@@ -72,17 +72,17 @@ class Hotel(models.Model):
     def __str__(self):
         return self.name
     
-    def save(self, *args, **kwargs):
-        slug_query = Hotel.objects.filter(slug=self.slug)
-        if slug_query:
-            uniqueid = "".join(random.choice(string.ascii_letters) for _ in range(2))
-            self.slug = slugify(self.name)+'-'+uniqueid.lower()
+    # def save(self, *args, **kwargs):
+    #     slug_query = Hotel.objects.filter(slug=self.slug)
+    #     if slug_query:
+    #         uniqueid = "".join(random.choice(string.ascii_letters) for _ in range(2))
+    #         self.slug = slugify(self.name)+'-'+uniqueid.lower()
 
-        if self.slug =="" or self.slug == None:
-            uniqueid = "".join(random.choice(string.ascii_letters) for _ in range(4))
-            self.slug = slugify(self.name)+'-'+uniqueid.lower()
+    #     if self.slug =="" or self.slug == None:
+    #         uniqueid = "".join(random.choice(string.ascii_letters) for _ in range(4))
+    #         self.slug = slugify(self.name)+'-'+uniqueid.lower()
             
-        super(Hotel,self).save(*args, **kwargs)
+    #     super(Hotel,self).save(*args, **kwargs)
 
     def thumbnail(self):
         return mark_safe("<img src='%s' alt='' width='50' height='50' border-radius='6px'style='object-fit' />" % (self.image.url))
