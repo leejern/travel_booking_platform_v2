@@ -1,0 +1,274 @@
+{% extends "hotel/hotelbase.html" %}
+{% load static %}
+
+
+{% block body %}
+<section class="section-banner">
+    <div class="banner-image flex flex-wrap w-full justify-center sm:h-[400px] h-[300px] m-0 bg-[url('{{room_type.image.url}}')] bg-cover bg-bottom">
+       <div class="w-full sm:h-[400px] h-[300px] absolute bg-[#000000bf]"></div>
+       <div class="flex items-center justify-center text-center z-2">
+          <div class="mt-[65px]">
+             <h2 class="mb-[12px] 2xl:text-[40px] xl:text-[38px] lg:text-[36px] md:text-[34px] sm:text-[30px] text-[28px] font-bold">
+                {{room_type.type}}
+             </h2>
+             <h5 class="text-[16px]">
+                <span>
+                   <a href="index.html" class="text-[#fff] hover:text-[#fff]">Home</a>
+                </span>
+                <span class="font-bold"> / </span>
+                <span>
+                   <a href="javascript:void(0)" class="text-[#fff] hover:text-[#fff]">Room Details</a>
+                </span>
+             </h5>
+          </div>
+       </div>
+    </div>
+ </section>
+
+<!-- Room-detsils -->
+<section class="section-room-detsils xl:py-[100px] py-[70px]">
+   <div class="flex flex-wrap justify-between items-center mx-auto 2xl:max-w-[1320px] xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px]">
+       <div class="flex flex-wrap w-full mb-[-24px]">
+           <div class="lg:w-8/12 w-full px-[12px] mb-[24px]" data-aos="fade-up" data-aos-duration="2000">
+               <div class="lh-room-details">
+                   <div class="lh-main-room w-full">
+                       <div class="slider slider-for mb-[24px]">
+                           <div class="lh-room-details-image"><img src="{{room_type.image.url}}" class="w-full rounded-[15px]" alt="room-1"></div>
+                           {% comment %} <div class="lh-room-details-image"><img src="{{room_type.image.url}}" class="w-full rounded-[15px]" alt="room-2"></div>
+                           <div class="lh-room-details-image"><img src="assets/img/room/room-3.png" class="w-full rounded-[15px]" alt="room-3"></div>
+                           <div class="lh-room-details-image"><img src="{{room_type.image.url}}" class="w-full rounded-[15px]" alt="room-4"></div>
+                           <div class="lh-room-details-image"><img src="assets/img/room/room-5.png" class="w-full rounded-[15px]" alt="room-5"></div> {% endcomment %}
+                       </div>
+                       
+                   </div>
+                   <div class="lh-room-details-contain pt-0">
+                       <h4
+                           class="lh-room-details-contain-heading text-[#000] py-[10px] font-bold lg:text-[30px] md:text-[28px] sm:text-[26px] text-[24px]">
+                           {{rooms.count}} Rooms Available </h4>
+                       <p class="pt-[10px]">This is the dolor sit amet consectetur, adipisicing elit. Quis
+                           asperiores exercitationem
+                           non placeat esse. Quasi ipsam tenetur quaerat blanditiis corrupti.</p>
+                           <div class="lg:flex flex-wrap mb-[-24px] w-full">
+                            {% for room in rooms %}
+                            <div class="lg:w-1/3 px-[12px] mb-[24px]">
+                                <div class="lh-prices bg-[#fff] rounded-[15px] pb-[24px]" data-aos="fade-up" data-aos-duration="1000">
+                                   <div class="lh-prices-out px-[24px]">
+                                      <div class="lh-prices-in border-b border-solid border-[#e3e1e1]">
+                                            <h4 class="lh-price-dollar py-[15px] xl:text-[60px] text-[50px] font-bold text-[#ed5b31] leading-[40px]">
+                                               <span class="xl:text-[35px] xl:align-[18px] text-[20px] align-[20px]"></span>{{room.room_number}}
+                                            </h4>
+                                      </div>
+                                      <div class="lh-prices-viwe xl:pt-[20px] pt-[15px]">
+                                            <ul class="p-0 mb-[16px]">
+                                                <li class="py-[8px] flex justify-between">
+                                                    <span class="xl:text-[15px] text-[14px]">{{room.room_type}}</span>
+                                                    <i class="ri-arrow-right-line flex justify-end text-[16px] rotate-[-35deg]"></i>
+                                                </li> 
+                                                <li>
+                                                    <input type="hidden" class="room-id-{{room.id}}"value="{{room.id}}"id="room_id">
+                                                </li>  
+                                                <li>
+                                                    <input type="hidden" class="room-number-{{room.id}}"value="{{room.room_number}}" id="room_number">
+                                                </li>                                            
+                                                
+                                            </ul>
+                                            <!-- <input type="text" class="room-number-{{room.room_number}}"value="{{room.room_number.id}}"> -->
+                                      </div>
+                                      <div class="price-buttons flex">
+                                            <button data-index="{{room.id}}" class="duration-[0.3s] ease-in-out border-[1px] border-solid border-[#ed5b31] px-[15px] py-[5px] leading-[28px] bg-[#ed5b31] text-[#fff] relative z-[2] text-[15px] font-medium tracking-[1px] rounded-[10px] hover:bg-inherit hover:text-[#ed5b31] add-to-selection">Add to selection</button>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                            {% endfor %}
+                           </div>
+                           <input type="hidden" value="{{hotel.id}}" id="id">
+                           <input type="hidden" value="{{hotel.name}}" id="hotel_name">
+                           <input type="text" value="{{room_type.type}}" id="room_name">
+                           <input type="hidden" value="{{room_type.price}}" id="room_price">
+                           <input type="hidden" value="{{room_type.number_of_beds}}" id="number_of_beds">
+                           <input type="hidden" value="{{room_type.id}}" id="room_type">
+                           <input type="hidden" value="{{checkin}}" id="checkin">
+                           <input type="hidden" value="{{checkout}}" id="checkout">
+                           <input type="hidden" value="{{adults}}" id="adults">
+                           <input type="hidden" value="{{children}}" id="children">
+                           
+
+                           <!-- hotel-id=8&checkin=2024-02-01$checkout=2024-02-08$adults=2&children=2$room_type=Economy%20Room%20-%20The%20Boutique%20Mansion%20-%202000.00 -->
+                       <div class="lh-room-details-amenities pt-[24px]">
+                           <h4 class="text-[18px] text-[#000] font-bold border-b border-solid border-[#e3e1e1] pb-[10px]">Amenities</h4>
+                           <div class="flex flex-wrap">
+                               <div class="lg:w-1/3 w-full pt-[15px] lg:pr-[12px] pr-[0]">
+                                   <ul>
+                                       <li class="flex pb-[10px]"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>42 Inch flat screen TV</li>
+                                       <li class="flex pb-[10px]"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>In-room Safe</li>
+                                       <li class="flex"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>{{room_type.number_of_beds}} Bed(s)</li>
+                                   </ul>
+                               </div>
+                               <div class="lg:w-1/3 w-full pt-[15px] lg:px-[12px] px-[0]">
+                                   <ul>
+                                       <li class="flex pb-[10px]"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>Mini-refrigerator</li>
+                                       <li class="flex pb-[10px]"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>Breakfast</li>
+                                       <li class="flex"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>complimeatary bottled water</li>
+                                   </ul>
+                               </div>
+                               <div class="lg:w-1/3 w-full pt-[15px] lg:pl-[12px] pl-[0]">
+                                   <ul>
+                                       <li class="flex pb-[10px]"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>Mini-refrigerator</li>
+                                       <li class="flex pb-[10px]"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>Breakfast</li>
+                                       <li class="flex"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>complimeatary bottled water</li>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="lh-room-details-rules pt-[24px]">
+                           <div class="lh-room-rules">
+                               <h4 class="text-[18px] text-[#000] font-bold border-b border-solid border-[#e3e1e1] pb-[10px]">
+                                   Rules & Regulation</h4>
+                               <div class="lh-cols-room pt-[15px]">
+                                   <ul>
+                                       <li class="flex pb-[10px]"><code class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>No smoking in side the room</li>
+                                       <li class="flex pb-[10px]"><code
+                                               class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>Check-in: After
+                                           02:00pm</li>
+                                       <li class="flex pb-[10px]"><code
+                                               class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>Late checkout:
+                                           Additional change 50% of the room rate.</li>
+                                       <li class="flex pb-[10px]"><code
+                                               class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>Checkout: Before
+                                           11:00am</li>
+                                       <li class="flex pb-[10px]"><code
+                                               class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>No Pets</li>
+                                       <li class="flex"><code
+                                               class="text-[17px] text-[#ed5b31] pr-[5px]">*</code>Indentification
+                                           document is must for hotel registration.</li>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="lh-room-details-review pt-[24px]">
+                           <div class="lh-room-review">
+                               <h4 class="text-[18px] text-[#000] font-bold border-b border-solid border-[#e3e1e1] pb-[10px]">
+                                   Add A Review</h4>
+                               <p class="pb-[20px] pt-[15px]">This is the dolor, sit amet consectetur adipisicing
+                                   elit. Accusamus sapiente
+                                   consectetur debitis blanditiis saepe commodi iste deleniti nisi nam tenetur?</p>
+                           </div>
+                           <form action="#">
+                               <div class="lh-room-review-form pb-[15px]">
+                                   <label for="firstname" class="text-[16px] font-Cardo text-[#000] pb-[10px]">Your Name</label>
+                                   <input type="text" id="firstname" name="firstname"
+                                       class="outline-0 h-[50px] pl-[20px] m-0 border border-solid border-[#e3e1e1] w-full rounded-[15px] bg-[#f7f5f1]"
+                                       required>
+                               </div>
+                               <div class="lh-room-review-form pb-[15px]">
+                                   <label for="email" class="text-[16px] font-Cardo text-[#000] pb-[10px]">Your Email</label>
+                                   <input type="email" id="email" name="email"
+                                       class="outline-0 h-[50px] pl-[20px] m-0 border border-solid border-[#e3e1e1] w-full rounded-[15px] bg-[#f7f5f1]"
+                                       required="">
+                               </div>
+                               <div class="lh-room-review-form pb-[15px]">
+                                   <label for="textarea" class="text-[16px] font-Cardo text-[#000] pb-[10px]">Comment</label>
+                                   <textarea id="textarea"
+                                       class="outline-0 h-[120px] px-[20px] py-[10px] m-0 border border-solid border-[#e3e1e1] w-full rounded-[15px] bg-[#f7f5f1]"></textarea>
+                               </div>
+                               <div class="lh-room-review-form">
+                                   <label class="text-[16px] font-Cardo text-[#000] pb-[10px]">Rating</label>
+                                   <div class="lh-review-form-rating">
+                                       <i class="ri-star-fill text-[16px] text-[#ed5b31]"></i>
+                                       <i class="ri-star-fill text-[16px] text-[#ed5b31]"></i>
+                                       <i class="ri-star-fill text-[16px] text-[#ed5b31]"></i>
+                                       <i class="ri-star-fill text-[16px] text-[#ed5b31]"></i>
+                                       <i class="ri-star-fill text-[16px] text-[#ed5b31]"></i>
+                                   </div>
+                               </div>
+                               <div class="lh-room-review-buttons pt-[24px]">
+                                   <button
+                                       class="duration-[0.3s] ease-in-out border-[1px] border-solid border-[#ed5b31] px-[15px] py-[5px] leading-[28px] bg-[#ed5b31] text-[#fff] relative z-[2] text-[15px] font-medium tracking-[1px] rounded-[10px] hover:bg-inherit hover:text-[#ed5b31]"
+                                       type="submit">
+                                       Submit Review
+                                   </button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="lg:w-4/12 w-full px-[12px] mb-[24px]" data-aos="fade-up" data-aos-duration="3000">
+               <div class="lh-side-room bg-[#f7f5f1] rounded-[15px] sticky top-[80px]">
+                   <h4
+                       class="lh-room-inner-heading p-[20px] text-[18px] text-[#000] font-bold border-b border-solid border-[#e3e1e1]">
+                       Check room availability</h4>
+                   <div class="lh-side-reservation pt-0 pr-[24px] pl-[24px] pb-[24px]">
+
+                       <form method="POST" action="{% url "booking:check_room_availabilty" %}">
+                           {% csrf_token %}
+
+                           <input type="hidden" name="hotel-id" value={{hotel.id}}>
+                           <div class="lh-side-reservation-from relative">
+                               <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Check In</label>
+                               <div class="calendar" >
+                                   <input type="date" name="checkin" value="" class="border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd" placeholder="checkin date">
+                               </div>
+                           </div>
+                           <div class="lh-side-reservation-from relative">
+                               <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Check Out</label>
+                               <div class="calendar" >
+                                   <input type="date"name="checkout" value="" class="border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd" placeholder="checkout">
+                               </div>
+                           </div>
+                           <div class="lh-side-reservation-from relative">
+                               <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Room</label>
+                               <div class="custom-select border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd">
+                                   <select class="hidden"name="room_type" placeholder>
+                                      <option value="--" >--</option>
+                                    {% for type in rtype %}
+                                     <option value="{{type.slug}}">{{type.type}}</option>
+                                    {% endfor %}
+                                       
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="lh-side-reservation-from relative">
+                               <div class="flex flex-wrap w-full mb-[-24px]">
+                                   <div class="md:w-1/2 w-full md:pr-[12px] pr-[0] mb-[24px]">
+                                       <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Adult</label>                                      
+                                       <input type="number"name="adults" value="1" class="custom-select border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd">
+                                       
+                                   </div>
+                                   <div class="md:w-1/2 w-full md:pl-[12px] pl-[0] mb-[24px]">
+                                       <label class="pb-[10px] leading-[18px] text-[#777] cursor-pointer">Children</label>
+                                       <input type="number"name="children" value="0" class="custom-select border-0 outline-0 px-[12px] h-[50px] w-full bg-[#fff] m-0 rounded-[15px] dark-borderd">
+                                       
+                                   </div>
+                               </div>
+                           </div>
+                           
+                           <div class="lh-side-reservation-from relative">
+                               <div class="lh-side-reservation-from-buttons d-flex pt-[24px]">
+                                   <button class="duration-[0.3s] ease-in-out border-[1px] border-solid border-[#ed5b31] px-[15px] py-[5px] leading-[28px] bg-[#ed5b31] text-[#fff] relative z-[2] text-[15px] font-medium tracking-[1px] rounded-[10px] hover:bg-inherit hover:text-[#ed5b31]"
+                                       >
+                                       Check Now
+                                   </button>
+                               </div>
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</section>
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+

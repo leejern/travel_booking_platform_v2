@@ -1,0 +1,255 @@
+{% load static %}
+
+<!--
+    Item Name: Luxurious - Hotel Booking Tailwind CSS Template..
+    Author: ashishmaraviya
+    Version: 1.0.0
+    Copyright 2024
+	Author URI: https://themeforest.net/user/ashishmaraviya
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="Best Luxurious Hotel Booking Template.">
+   <meta name="keywords" content="hotel, booking, business, restaurant, spa, resort, landing, agency, corporate, start up, site design, new business site, business template, professional template, classic, modern">
+   <title>Luxurious - Hotel Booking Tailwind CSS Template.</title>
+
+   <link rel="icon" href="assets/img/favicons/favicon.png" type="image/x-icon">
+
+   <!-- Css All Plugins Files -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.min.css" integrity="sha512-i5VzKip7owqOGjb0YTF8MR2J9yBVO3FLHeazKzLp354XYTmKcqEU3UeFYUw82R8tV6JqxeATOfstCfpfPhbyEA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css" integrity="sha512-/k658G6UsCvbkGRB3vPXpsPHgWeduJwiWGPCGS14IQw3xpr63AEMdA8nMYG2gmYkXitQxDTn6iiK/2fD4T87qA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css" integrity="sha512-pmAAV1X4Nh5jA9m+jcvwJXFQvCBi3T17aZ1KWkqXr7g/O2YMvO8rfaa5ETWDuBvRq6fbDjlw4jHL44jNTScaKg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   <!-- Tailwind css -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="{%static 'js/vendor/tailwindcss3.4.0.js'%}"></script>
+
+
+   <!-- Main Style -->
+   <link rel="stylesheet" href="{% static 'css/style1.css'%}">
+
+
+</head>
+
+<body class="overflow-x-hidden">
+   <!-- loader -->
+   <div class="lh-loader min-w-full w-full h-screen fixed top-0 left-0 flex items-center justify-center bg-[#fff] z-[25]">
+      <span class="loader w-[100px] h-[100px] flex relative items-center justify-center"></span>
+   </div>
+   <!-- Header -->
+   <header> 
+      
+      <div class="lh-header bg-[#000000b3] absolute w-full z-[16] py-[6px]">
+         <div class="flex flex-wrap justify-between items-center mx-auto 2xl:max-w-[1320px] xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px] px-[12px]">
+            <nav class="flex flex-nowrap w-full py-[3px]">
+               <a class="navbar-brand py-[5px]" href="/">
+                  <img src="{% static "img/kalahari_travels.png" %}" alt="logo" class="xl:w-[180px] w-[160px] relative z-[2]">
+               </a>
+               <button class="navbar-toggler shadow-none flex basis-[auto] grow items-center text-[24px] text-[#fff] lg:hidden flex justify-end" type="button" data-bs-toggle="collapse" data-bs-target="#" aria-label="Toggle navigation">
+                  <i class="ri-menu-2-line"></i>
+               </button>
+               <div class="flex basis-[auto] grow items-center lg:flex hidden">
+                  <ul class="navbar-nav flex w-full relative z-[3] flex-row justify-end">
+                     {% if user.is_authenticated %}
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="{% url "Hotel:selected_rooms" %}">
+                              <i class="fa fa-bed"></i><span class="room-count"> {{request.session.selection_data_obj|length}}</span>
+                              
+                           </a>
+                        </li>
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] relative nav-link dropdown-toggle" href="javascript:void(0)">
+                              {{request.user}} <i class="fa fa-user"></i>
+                           </a>
+                           <ul class="dropdown-menu min-w-[150px] text-left opacity-0 invisible bg-[#fff] shadow-[0_0_3px_1px_rgba(0,0,0,0.2)] block z-[9] rounded-t-[0] rounded-b-[10px] mt-[30px] transition-all duration-[0.3s] ease-in-out">
+                              <li>
+                                 <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="{% url "UserAuth:logout" %}"><i class="fa fa-right-from-bracket"></i> Logout</a>
+                              </li>
+                              
+                           </ul>
+                        </li>
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="{% url "user_dashboard:dashboard" %}">
+                              <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+                           </a>
+                        </li>
+                        
+                     {% else %}
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="{% url "Hotel:selected_rooms" %}">
+                              <i class="fa fa-bed"></i><span class="room-count"> {{request.session.selection_data_obj|length}}</span>
+                              
+                           </a>
+                        </li>
+                        <li class="ml-[30px] nav-item dropdown">
+                           <a class="py-[5px] text-[15px] text-[#fff] relative nav-link dropdown-toggle" href="{% url "user_dashboard:dashboard" %}">
+                              Account <i class="ri-arrow-down-s-line ml-[5px]"></i>
+                           </a>
+                           <ul class="dropdown-menu min-w-[150px] text-left opacity-0 invisible bg-[#fff] shadow-[0_0_3px_1px_rgba(0,0,0,0.2)] block z-[9] rounded-t-[0] rounded-b-[10px] mt-[30px] transition-all duration-[0.3s] ease-in-out">
+                              <li>
+                                 <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="{% url "UserAuth:sign-in" %}">Sign in</a>
+                              </li>
+                              <li>
+                                 <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="{% url "UserAuth:sign-up" %}">Sign up</a>
+                              </li>
+                           </ul>
+                        </li>
+                     {% endif %}
+                     
+                     
+                     
+                     {% comment %} <li class="ml-[30px] nav-item dropdown">
+                        <a class="py-[5px] text-[15px] text-[#fff] nav-link relative dropdown-toggle" href="javascript:void(0)">
+                           Blog <i class="ri-arrow-down-s-line ml-[5px]"></i>
+                        </a>
+                        <ul class="dropdown-menu min-w-[150px] text-left opacity-0 invisible bg-[#fff] shadow-[0_0_3px_1px_rgba(0,0,0,0.2)] block z-[9] rounded-t-[0] rounded-b-[10px] mt-[30px] transition-all duration-[0.3s] ease-in-out">
+                           <li>
+                              <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="blog.html">Blog</a>
+                           </li>
+                           <li>
+                              <a class="dropdown-item text-[14px] text-[#777] capitalize hover:text-[#ed5b31]" href="blog-details.html">Blog-details</a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li class="ml-[30px] nav-item dropdown">
+                        <a class="py-[5px] text-[15px] text-[#fff] nav-link" href="restaurant.html">
+                           Restaurant
+                        </a>
+                     </li> {% endcomment %}
+                  </ul>
+               </div>
+            </nav>
+         </div>
+      </div>
+   </header>
+   <!-- Banner -->
+   
+   <!-- Mobile-menu -->
+<div class="lh-sidebar-overlay hidden w-full h-screen fixed top-0 left-0 bg-[#000000b3] z-[17]"></div>
+<div id="lh_mobile_menu" class="lh-side-cart lh-mobile-menu transition-all duration-[0.5s] ease w-[300px] h-full fixed left-[-300px] bg-[#fff] overflow-y-auto z-[20] p-[15px]">
+   <div class="w-full flex flex-wrap justify-between border-b-2 border-solid border-[#e3e1e1] pb-[10px] mb-[10px]">
+      <span class="text-[18px] text-[#ed5b31] font-semibold">My Menu</span>
+      <button type="button" class="lh-close relative border-0 text-[30px] leading-[1px] text-[#999] bg-[#fff]">×</button>
+   </div>
+   <div class="lh-menu-inner flex flex-col justify-between">
+      <input type="text" placeholder="Search" class="lh-menu-box h-[45px] w-full px-[10px] m-0 border-0 outline-none rounded-[5px] bg-[#eee]">
+      <div class="lh-menu-content">
+         <ul>
+            {% if user.is_authenticated %}
+               <li class="dropdown drop-list leading-[28px]">
+                  <a href="{% url "Hotel:selected_rooms" %}" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">
+                     <i class="fa fa-bed"></i><span class="room-count"> {{request.session.selection_data_obj|length}}</span>
+                  </a>
+               </li>
+               <li class="dropdown drop-list leading-[28px]">
+                  <a href="{% url "UserAuth:logout" %}" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">
+                     <i class="fa fa-right-from-bracket"></i>
+                  </a>
+               </li>
+            {% else %}            
+            <li class="dropdown drop-list leading-[28px]">
+               <a href="#" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">{{request.user}}</a>
+               <ul class="sub-menu shadow-none transition-none hidden w-full static visible opacity-100 p-0 mb-0">
+                  <li class="relative leading-[28px]">
+                     <a href="{% url "UserAuth:sign-in" %}" class="block capitalize opacity-80 pl-[20px] hover:text-[#444] border-b border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Sign In</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="{% url "UserAuth:sign-up" %}" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Sign UP</a>
+                  </li>
+               </ul>
+            </li>
+            {% endif %}
+            {% comment %} <li class="dropdown drop-list leading-[28px]">
+               <a href="#" class="block capitalize text-[15px] font-normal text-[#444] hover:text-[#444] no-underline border-b border-solid border-[#e3e1e1] p-[10px]">Pages</a>
+               <ul class="sub-menu shadow-none transition-none hidden w-full static visible opacity-100 p-0 mb-0">
+                  <li class="relative leading-[28px]">
+                     <a href="about.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">About Us</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="contact.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Contact</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="facilities.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Facilities</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="faq.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Faq</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="prices.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Prices</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="services.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Services</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="spa.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Spa</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="team.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Team</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="checkout.html" class="block capitalize opacity-80 pl-[20px] border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Checkout</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="dropdown drop-list leading-[28px]">
+               <a href="#" class="block capitalize text-[15px] font-normal text-[#444] no-underline hover:text-[#444] border-b border-solid border-[#e3e1e1] p-[10px]">Blog</a>
+               <ul class="sub-menu shadow-none transition-none hidden w-full static visible opacity-100 p-0 mb-0">
+                  <li class="relative leading-[28px]">
+                     <a href="blog.html" class="block capitalize opacity-80 pl-[20px] border-b border-solid hover:text-[#444] border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Blog</a>
+                  </li>
+                  <li class="relative leading-[28px]">
+                     <a href="blog-details.html" class="block capitalize opacity-80 pl-[20px] border-b border-solid hover:text-[#444] border-[#e3e1e1] p-[10px] text-[14px] text-[#444] no-underline font-light">Blog-details</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="dropdown drop-list leading-[28px]">
+               <a href="restaurant.html" class="block capitalize text-[15px] font-normal text-[#444] no-underline border-b hover:text-[#444] border-solid border-[#e3e1e1] p-[10px]">Restaurant</a>
+            </li> {% endcomment %}
+         </ul>
+      </div>
+   </div>
+</div>
+
+   {% block body %}{% endblock body %}
+
+
+</body>
+
+<!-- Plugins JS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.js" integrity="sha512-hRhHH3+D9xVKPpodEiYzHWIG8CWbCjp7LCdZ00K3/6xsdC3iT0OlPJLIwxSMEl07gya1Ae8iAqXjMMLpzqqh0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js" integrity="sha512-C1zvdb9R55RAkl6xCLTPt+Wmcz6s+ccOvcr6G57lbm8M2fbgn2SUjUJbQ13fEyjuLViwe97uJvwa1EUf4F1Akw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js" integrity="sha512-eP8DK17a+MOcKHXC5Yrqzd8WI5WKh6F1TIk5QZ/8Lbv+8ssblcz7oGC8ZmQ/ZSAPa7ZmsCU4e/hcovqR8jfJqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" integrity="sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+/RRdCW9nwfLn4YX0s2nO6Kv5Y2ChqgIakaC6PW09A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{%static 'js/vendor/app.js'%}"></script>
+<script src="{%static 'js/main1.js'%}"></script>
+<script src="{%static 'js/custom.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+   {% for message in messages %}
+   Swal.fire({ 
+      icon: '{{message.tags}}', 
+      title: '{{message}}', 
+      text: '{{message.tags}}',
+      timer: 1500
+   })
+   {% endfor %}
+</script>
+
+
+
+</html>
