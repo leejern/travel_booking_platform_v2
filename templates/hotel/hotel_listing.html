@@ -4,14 +4,9 @@
     <div class="container">
         
         <div class="row">
+            {% if hotel in hotels %}
             {% for hotel in hotels %}
-            {% comment %} <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{hotel.image.url}}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{hotel.name}}</h5>
-                <p class="card-text">{{hotel.mobile}}.</p>
-                <a href="{% url "Hotel:hotel_detail" hotel.slug %}" class="btn btn-primary">View</a>
-            </div> {% endcomment %}
+            
             <div class="col-lg-6">
                 <!-- Single Blog --> 
                 <div class="single-blog mb-30">
@@ -36,8 +31,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
             {%endfor%}
+            {% else %}
+            <div class="col-lg-12">
+                <div class="alert alert-info">
+                    <strong>No hotels found!</strong> Please check back later or try searching for a different
+                    hotel.
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
  </div>

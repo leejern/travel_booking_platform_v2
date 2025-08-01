@@ -11,6 +11,14 @@ urlpatterns = [
     path("selected_rooms/",selected_rooms,name="selected_rooms"),
     path("checkout/<booking_id>/",checkout,name="checkout"),
     path("update_room_status/",update_room_status,name="update_room_status"),
+
+    # Admin custom views for reports
+    # path('reports/', views.reports_view, name='hotel_reports'),
+    # path('reports/api/bookings/', views.bookings_api, name='bookings_api'),
+    # path('reports/api/users/', views.users_api, name='users_api'),
+    # path('reports/api/hotels/', views.hotels_api, name='hotels_api'),
+    # path('reports/api/room-types/', views.room_types_api, name='room_types_api'),
+
     
 
 
