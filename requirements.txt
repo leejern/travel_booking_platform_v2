@@ -19,6 +19,7 @@ django-mathfilters==1.0.0
 django-memoize==2.3.1
 django-multiselectfield==0.1.13
 django-nvd3==0.10.1
+django-smart-selects==1.7.2
 django-taggit==5.0.1
 environs==10.3.0
 et-xmlfile==1.1.0

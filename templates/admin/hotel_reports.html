@@ -1,0 +1,203 @@
+<!-- templates/admin/hotel_reports.html -->
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Hotel Reports' %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/admin_reports.css'%}">
+{% endblock %}
+
+{% block content %}
+{% comment %} <div class="dashboard-containe8r"> {% endcomment %}
+<div class="col-12">
+    <!-- Reports Header -->
+    <div class="reports-header">
+        <h1><i class="fas fa-chart-line"></i> Hotel Management Reports</h1>
+        <div class="header-actions">
+            <small class="text-muted">Last updated: <span id="lastUpdated">{{ today|date:"M d, Y H:i" }}</span></small>
+        </div>
+    </div>
+
+    <!-- Filter Controls -->
+    <div class="filter-controls">
+        <label for="dateRange"><i class="fas fa-calendar"></i> Date Range:</label>
+        <select id="dateRange">
+            <option value="30" selected>Last 30 Days</option>
+            <option value="90">Last 3 Months</option>
+            <option value="365">Last 12 Months</option>
+        </select>
+        
+        <label for="hotelFilter"><i class="fas fa-hotel"></i> Hotel:</label>
+        <select id="hotelFilter">
+            <option value="">All Hotels</option>
+            {% for hotel in hotels %}
+            <option value="{{ hotel.id }}">{{ hotel.name }}</option>
+            {% endfor %}
+        </select>
+        
+        <button class="refresh-btn" onclick="loadAllReports()">
+            <i class="fas fa-sync-alt"></i> Refresh Data
+        </button>
+    </div>
+
+    <!-- Key Statistics Cards -->
+    <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+            <i class="fas fa-calendar-check icon"></i>
+            <span class="stat-number" id="totalBookings">Loading...</span>
+            <div class="stat-label">Total Bookings</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-dollar-sign icon"></i>
+            <span class="stat-number" id="totalRevenue">Loading...</span>
+            <div class="stat-label">Total Revenue</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users icon"></i>
+            <span class="stat-number" id="totalUsers">Loading...</span>
+            <div class="stat-label">Total Users</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-hotel icon"></i>
+            <span class="stat-number" id="activeHotels">Loading...</span>
+            <div class="stat-label">Active Hotels</div>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+        <div class="summary-card">
+            <h4>Average Booking Value</h4>
+            <div class="value" id="avgBookingValue">Loading...</div>
+        </div>
+        <div class="summary-card">
+            <h4>User Retention Rate</h4>
+            <div class="value" id="userRetention">Loading...</div>
+        </div>
+        <div class="summary-card">
+            <h4>Available Rooms</h4>
+            <div class="value" id="availableRooms">Loading...</div>
+        </div>
+        <div class="summary-card">
+            <h4>Featured Hotels</h4>
+            <div class="value" id="featuredHotels">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="charts-grid">
+        <!-- Bookings Over Time -->
+        <div class="chart-container">
+            <div class="chart-title">
+                <i class="fas fa-chart-line"></i>
+                Bookings & Revenue Over Time
+            </div>
+            <canvas id="bookingsChart" class="chart-canvas"></canvas>
+        </div>
+
+        <!-- Monthly User Registrations -->
+        <div class="chart-container">
+            <div class="chart-title">
+                <i class="fas fa-user-plus"></i>
+                Daily User Registrations
+            </div>
+            <canvas id="usersChart" class="chart-canvas"></canvas>
+        </div>
+
+        <!-- Payment Status Distribution -->
+        <div class="chart-container">
+            <div class="chart-title">
+                <i class="fas fa-chart-pie"></i>
+                Payment Status Distribution
+            </div>
+            <canvas id="paymentStatusChart" class="chart-canvas"></canvas>
+        </div>
+
+        <!-- Most Booked Room Types -->
+        <div class="chart-container">
+            <div class="chart-title">
+                <i class="fas fa-bed"></i>
+                Most Booked Room Types
+            </div>
+            <canvas id="roomTypesChart" class="chart-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Top Performing Hotels Table -->
+    <div class="table-container">
+        <div class="chart-title">
+            <i class="fas fa-trophy"></i>
+            Top Performing Hotels
+        </div>
+        <div id="topHotelsLoading" class="loading">
+            <i class="fas fa-spinner"></i> Loading hotels data...
+        </div>
+        <table class="data-table" id="topHotelsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-hotel"></i> Hotel Name</th>
+                    <th><i class="fas fa-calendar"></i> Bookings</th>
+                    <th><i class="fas fa-dollar-sign"></i> Revenue</th>
+                    <th><i class="fas fa-bed"></i> Total Rooms</th>
+                    <th><i class="fas fa-eye"></i> Views</th>
+                    <th><i class="fas fa-star"></i> Featured</th>
+                </tr>
+            </thead>
+            <tbody id="topHotelsBody"></tbody>
+        </table>
+    </div>
+
+    <!-- Recent Bookings Table -->
+    <div class="table-container">
+        <div class="chart-title">
+            <i class="fas fa-clock"></i>
+            Recent Bookings
+        </div>
+        <div id="recentBookingsLoading" class="loading">
+            <i class="fas fa-spinner"></i> Loading recent bookings...
+        </div>
+        <table class="data-table" id="recentBookingsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-hashtag"></i> Booking ID</th>
+                    <th><i class="fas fa-user"></i> Guest Name</th>
+                    <th><i class="fas fa-hotel"></i> Hotel</th>
+                    <th><i class="fas fa-dollar-sign"></i> Amount</th>
+                    <th><i class="fas fa-info-circle"></i> Status</th>
+                    <th><i class="fas fa-calendar"></i> Date</th>
+                </tr>
+            </thead>
+            <tbody id="recentBookingsBody"></tbody>
+        </table>
+    </div>
+
+    <!-- Export Options -->
+    <div class="table-container">
+        <div class="chart-title">
+            <i class="fas fa-download"></i>
+            Export Reports
+        </div>
+        <div class="export-buttons">
+            <button class="refresh-btn" onclick="exportToPDF()">
+                <i class="fas fa-file-pdf"></i> Export to PDF
+            </button>
+            <button class="refresh-btn" onclick="exportToExcel()">
+                <i class="fas fa-file-excel"></i> Export to Excel
+            </button>
+            <button class="refresh-btn" onclick="exportToCSV()">
+                <i class="fas fa-file-csv"></i> Export to CSV
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Updated JavaScript to fix Chart.js compatibility issues -->
+<script src="{% static 'js/hotel_reports.js' %}"></script>
+{% endblock %}
+
+
+

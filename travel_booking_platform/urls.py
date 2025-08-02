@@ -19,14 +19,16 @@ from django.urls import path,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from Hotel import views as hotel_views
 from django.conf import settings
+from Hotel.custom_admin import custom_admin_site
 
 
 from django.conf.urls.static import static
 
 
 urlpatterns = [ 
-    path('admin_tools_stats/', include('admin_tools_stats.urls')),
-    path('admin/', admin.site.urls),
+    # path('admin_tools_stats/', include('admin_tools_stats.urls')),
+    # path('admin/', admin.site.urls),
+    path('admin/',custom_admin_site.urls),  # Use custom admin site
     path("",hotel_views.home,name="home"),
 
     # custom urls
@@ -45,6 +47,7 @@ urlpatterns = [
 
     # ckeditor ursl
     path('ckeditor5/',include("django_ckeditor_5.urls")),
+    path('chaining/', include('smart_selects.urls')),
 
 
     

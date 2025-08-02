@@ -19,7 +19,7 @@ from decimal import Decimal
 
 from .models import *
 from .reports import ReportsAdminMixim
-from .custom_admin import HotelAdminSite
+from .custom_admin import CustomAdminSite, custom_admin_site
 
 # Register your models here.
 
@@ -132,11 +132,11 @@ class HotelAdmin(ReportsAdminMixim,admin.ModelAdmin):
     list_filter = [HotelStatusFilter, 'status', 'featured', 'city', 'date']
     search_fields = ['name', 'city', 'address', 'email', 'mobile', 'user__username']
     prepopulated_fields = {'slug': ('name',)}
-    readonly_fields = ('views', 'slug', 'rating_display', 'date', 'updated')
+    readonly_fields = ('views',  'rating_display', 'date', 'updated')
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('user', 'name', 'slug', 'description', 'image')
+            'fields': ('user', 'name', 'slug', 'description', 'image') 
         }),
         ('Contact & Location', {
             'fields': ('email', 'mobile', 'address', 'city', 'state', 'country', 'latitude', 'longitude')
@@ -426,18 +426,17 @@ admin.site.index_title = "Welcome to Hotel Management System"
 admin.site.enable_nav_sidebar = True
 
 # custom admin site
-admin_site = HotelAdminSite(name='hotel_admin')
 
 # register all your models with the custom admin site
-admin_site.register(Hotel, HotelAdmin)
-admin_site.register(HotelGallery, HotelGalleryAdmin)
-admin_site.register(HotelFeatures, HotelFeaturesAdmin)
-admin_site.register(HotelFaqs, HotelFaqsAdmin)
-admin_site.register(RoomType, RoomTypeAdmin)
-admin_site.register(Room, RoomAdmin)
-admin_site.register(Booking, BookingAdmin)
-admin_site.register(Coupon, CouponAdmin)
-admin_site.register(GuestActivityLog, GuestActivityLogAdmin)
-admin_site.register(StaffOnDuty, StaffOnDutyAdmin)
-admin_site.register(Notifications, NotificationsAdmin)
-admin_site.register(Bookmark, BookmarkAdmin)
+custom_admin_site.register(Hotel, HotelAdmin)
+custom_admin_site.register(HotelGallery, HotelGalleryAdmin)
+custom_admin_site.register(HotelFeatures, HotelFeaturesAdmin)
+custom_admin_site.register(HotelFaqs, HotelFaqsAdmin)
+custom_admin_site.register(RoomType, RoomTypeAdmin)
+custom_admin_site.register(Room, RoomAdmin)
+custom_admin_site.register(Booking, BookingAdmin)
+custom_admin_site.register(Coupon, CouponAdmin)
+custom_admin_site.register(GuestActivityLog, GuestActivityLogAdmin)
+custom_admin_site.register(StaffOnDuty, StaffOnDutyAdmin)
+custom_admin_site.register(Notifications, NotificationsAdmin)
+custom_admin_site.register(Bookmark, BookmarkAdmin)

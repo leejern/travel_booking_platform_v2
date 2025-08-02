@@ -37,7 +37,6 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popus'
 # Application definition
 
 INSTALLED_APPS = [    
-     'admin_tools_stats',  # this must be BEFORE 'admin_tools' and 'django.contrib.admin'
     'django_nvd3',
     'jazzmin',
     'django.contrib.admin',
@@ -62,7 +61,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'taggit',
     'import_export',
-    'mathfilters',
+    'smart_selects',
 
     
 ] 
@@ -194,82 +193,112 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 JAZZMIN_SETTINGS ={
+    "site_title": "Hotel Management System",
     'site_header': 'KALAHARI',
     'site_brand': 'Kalahari travel',
     #'site_logo':
-    'copyright':"All rights reserved",
+     "site_logo": None,
+    "login_logo": None,
+    "login_logo_dark": None,
+    "site_logo_classes": "img-circle",
+
+    'copyright':"Kalahari travel",
     'welcome_sign':'Welcome to KALAHARI travel administration',
+
+    "search_model": ["userauth.User", "Hotel.Hotel", "Hotel.Booking"],
+    "user_avatar": None,
+
     'topmenu_links':[
         {'name':'Home','url':"admin:index",'permissions':["auth.view_user"]},
-        {'name':'Company','url':"/admin/addons/company/"},
-        {'name':'Users','url':"/admin/userauths/user/"},
+        {'name':'Reports','url':"reports/",'permissions':["Hotel.view_hotel"]},
         {'model':'AUTH_USER_MODEL.User'},
-        # {'name':'Home','url':"admin:index",'permissions':["auth.view_user"]},
+        {"app": "Hotel"},
+    ], 
+     # User Menu
+    "usermenu_links": [
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
     ],
-    "oder_with_respect_to":[
-        'hotel',
-        'hotel.Hotel',
-        'hotel.Room',
-        'hotel.Booking',
-        'hotel.BookingDetail',
-        'hotel.Guest',
-        'hotel.RoomServices',
-        'userauths',
-        'addons',
-    ],
+
+    # Side Menu
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "order_with_respect_to": ["auth", "Hotel"],
+
+    # Custom Links - ADD REPORTS LINK HERE
+    "custom_links": {
+        "Hotel": [{
+            "name": "Reports Dashboard", 
+            "url": "/hotel/reports/", 
+            "icon": "fas fa-chart-bar",
+            "permissions": ["Hotel.view_hotel"]
+        }]
+    },
 
     'icons':{
         'admin.logEntry': "fas fa-file",
 
         'auth' : 'fas fa-user-cog',
         'auth.User': "fas fa-user",
+        "auth.Group": "fas fa-users",
 
-        'userauths.User': "fas fa-user",
+        'userauths.User': "fas fa-users",
         'userauths.Profile': "fas fa-address-card",
 
-        "hotel.Hotel": "fas fa-th",
-        "hotel.Booking": "fas fa-calender-month",
+        "hotel.Hotel": "fas fa-hotel",
+        "hotel.Booking": "fas fa-calender-check",
         "hotel.BookingDetail": "fas fa-calender-alt",
         "hotel.Guest": "fas fa-user",
+        "Hotel.RoomType": "fas fa-door-open",
         "hotel.Room": "fas fa-bed",
         "hotel.RoomServices": "fas fa-user-cog",
         "hotel.Notification": "fas fa-bell",
-        "hotel.Caupon": "fas fa-tag",
+        "hotel.Caupon": "fas fa-tags",
         "hotel.Bookmark": "fas fa-heart",
+        "Hotel.Review": "fas fa-star",
 
     },
-    "show_ui_builder" : True,
+    "related_modal_active": False,
+    "custom_css": None,
+    "custom_js": None,
+    "use_google_fonts_cdn": True,
+    "show_ui_builder": False,
+     "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {"userauth.user": "collapsible", "auth.group": "vertical_tabs"},
+    "language_chooser": False,
 }
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
-    'footer_small_text': False,
-    "body_small_text": True,
-    "brand_small_text": True,
-    "brand_color":"navbar-indigo",
-    "accent": "accent-olivegreen",
-    "navbar" : "navbar-indigo navbar-dark",
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-navy",
+    "accent": "accent-teal",
+    "navbar": "navbar-navy navbar-dark",
     "no_navbar_border": False,
     "navbar_fixed": False,
     "layout_boxed": False,
     "footer_fixed": False,
     "sidebar_fixed": False,
-    "sidebar" : "sidebar-dark-indigo",
+    "sidebar": "sidebar-dark-navy",
     "sidebar_nav_small_text": False,
     "sidebar_disable_expand": False,
     "sidebar_nav_child_indent": False,
     "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
-    #"theme":"default",
-    #"dark_mode_theme": "None",
-    "button_classes" : {
+    "theme": "default",
+    "dark_mode_theme": None,
+    "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
         "info": "btn-info",
         "warning": "btn-warning",
         "danger": "btn-danger",
-        "success" : "btn-success",
+        "success": "btn-success"
     }
+
 }
 customColorPalete =[
     {"color": "hsl(4,90%,58%)", "label": "Red",},

@@ -11,6 +11,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django_ckeditor_5.fields import CKEditor5Field
 from shortuuid.django_fields import ShortUUIDField
 from taggit.managers import TaggableManager
+from smart_selects.db_fields import ChainedForeignKey
 
 from UserAuth.models import User
 
@@ -245,7 +246,16 @@ class RoomType(models.Model):
 
 class Room(models.Model):
     hotel = models.ForeignKey(Hotel, related_name='rooms', on_delete=models.CASCADE)
-    room_type = models.ForeignKey(RoomType, related_name='room_types', on_delete=models.CASCADE)
+    room_type = ChainedForeignKey(
+        RoomType,
+        chained_field="hotel",
+        chained_model_field="hotel",
+        auto_choose=True,
+        sort=True,
+        related_name='rooms',
+        on_delete=models.CASCADE
+    )
+    # room_type = models.ForeignKey(RoomType, related_name='room_types', on_delete=models.CASCADE)
     room_number = models.CharField(max_length=30)
     floor = models.PositiveIntegerField(blank=True, null=True)
     is_available = models.BooleanField(default=True)

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 from .models import User,Profile
+from Hotel.custom_admin import custom_admin_site
 
 # Register your models here.
 
@@ -25,5 +26,5 @@ class ProfileModel(admin.ModelAdmin):
 
 
 
-admin.site.register(User,UserModdel)
-admin.site.register(Profile,ProfileModel)
+custom_admin_site.register(User,UserModdel)
+custom_admin_site.register(Profile,ProfileModel)
