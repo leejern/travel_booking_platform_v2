@@ -175,6 +175,14 @@ LOGIN_URL='UserAuth:sign-in'
 LOGOUT_REDIRECT_URL ='UserAuth:sign-in'
 # if DEBUG:
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Smart selects settings (optional)
+USE_DJANGO_JQUERY = True  # Use Django's jQuery instead of loading from CDN
+
+# If you want to use a specific jQuery version
+JQUERY_URL = '/static/admin/js/vendor/jquery/jquery.min.js'
+
 # else:
 #     # settings.py
 

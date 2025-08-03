@@ -16,6 +16,7 @@ from .models import *
 # Create your views here.
 def home(request):
     hotels = Hotel.objects.filter(status="Live") 
+    print("===========================================Hotels: ",hotels.count(),"=========================================") 
 
     context = {
         "hotels":hotels
@@ -26,6 +27,7 @@ def home(request):
 def hotel_detail(request,slug):
     hotel = Hotel.objects.get(slug=slug)
     rtype=RoomType.objects.filter(hotel=hotel,)
+    print("===========================================Room Types: ",rtype.count(),"=========================================")
 
     context = {
         "hotel":hotel, 

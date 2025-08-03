@@ -114,7 +114,7 @@
       </div>
       <nav>
          <div class="nav nav-tabs rooms lh-room border-0" id="nav-tab" role="tablist">
-            {% for type in hotel.roomtypes.all %}
+            {% for type in rtype %}
             <input type="hidden" id="type" value="{{type.type}}">
             <input type="hidden" id="price" value="{{type.price}}">
             <button class="mb-0 text-[20px] leading-[28px] text-[#000] focus:text-[#000] w-1/4 border-0 text-center nav-link veiw-selected-type" data-index="{{type.type}}" id="{{type.type}}">

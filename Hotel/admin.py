@@ -254,6 +254,8 @@ class RoomAdmin(admin.ModelAdmin):
     search_fields = ['room_number', 'hotel__name', 'room_type__type']
     list_editable = ['is_available', 'maintenance_mode']
     
+    
+    
     def current_booking(self, obj):
         today = date.today()
         current_booking = Booking.objects.filter(
@@ -268,6 +270,26 @@ class RoomAdmin(admin.ModelAdmin):
             return format_html('<a href="{}">Booking #{}</a>', url, current_booking.booking_id)
         return "Available"
     current_booking.short_description = "Current Status"
+# class RoomAdmin(admin.ModelAdmin):
+#     list_display = ['room_number', 'hotel', 'room_type', 'floor', 'is_available', 'maintenance_mode', 'current_booking']
+#     list_filter = ['is_available', 'maintenance_mode', 'hotel', 'room_type', 'floor']
+#     search_fields = ['room_number', 'hotel__name', 'room_type__type']
+#     list_editable = ['is_available', 'maintenance_mode']
+    
+#     def current_booking(self, obj):
+#         today = date.today()
+#         current_booking = Booking.objects.filter(
+#             room=obj,
+#             checkin_date__lte=today,
+#             checkout_date__gte=today,
+#             payment_status__in=['Paid', 'Processing']
+#         ).first()
+        
+#         if current_booking:
+#             url = reverse('admin:Hotel_booking_change', args=[current_booking.pk])
+#             return format_html('<a href="{}">Booking #{}</a>', url, current_booking.booking_id)
+#         return "Available"
+#     current_booking.short_description = "Current Status"
 
 
 @admin.register(Booking)
